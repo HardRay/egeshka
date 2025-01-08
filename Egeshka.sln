@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "src\ApiGatewa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{A7C79520-ECA3-4896-9E37-F8C1511F67D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthBot", "src\AuthBot\AuthBot\AuthBot.csproj", "{9E943E8F-29AF-4573-B6F0-87A574885C73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthBot", "src\AuthBot\AuthBot.csproj", "{9E943E8F-29AF-4573-B6F0-87A574885C73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
