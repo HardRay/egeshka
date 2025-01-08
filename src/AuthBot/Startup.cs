@@ -1,24 +1,35 @@
-﻿namespace Egeshka.AuthBot
+﻿using Egeshka.AuthBot.BackgroundJobs;
+using Egeshka.AuthBot.Services;
+
+namespace Egeshka.AuthBot;
+
+public class Startup()
 {
-    public class Startup(IConfiguration configuration)
+    public void ConfigureServices(IServiceCollection serviceCollection)
     {
-        public void ConfigureServices(IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddEndpointsApiExplorer();
-            serviceCollection.AddSwaggerGen();
-        }
+        AddServices(serviceCollection);
 
-        public void Configure(IApplicationBuilder applicationBuilder)
-        {
-            applicationBuilder.UseRouting();
-            applicationBuilder.UseSwagger();
-            applicationBuilder.UseSwaggerUI();
+        serviceCollection.AddEndpointsApiExplorer();
+        serviceCollection.AddSwaggerGen();
+    }
 
-            applicationBuilder.UseEndpoints(
-                endpointRouteBuilder =>
-                {
-                    endpointRouteBuilder.MapGet("", () => "Hello Wold!");
-                });
-        }
+    public void Configure(IApplicationBuilder applicationBuilder)
+    {
+        applicationBuilder.UseRouting();
+        applicationBuilder.UseSwagger();
+        applicationBuilder.UseSwaggerUI();
+
+        applicationBuilder.UseEndpoints(
+            endpointRouteBuilder =>
+            {
+                endpointRouteBuilder.MapGet("", () => "Hello Wold!");
+            });
+    }
+
+    public static void AddServices(IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddSingleton<ITelegramService, TelegramService>();
+
+        serviceCollection.AddHostedService<TelegramBackgroundService>();
     }
 }
