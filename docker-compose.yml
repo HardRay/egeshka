@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  auth-service-db:
+    image: postgres:latest
+    container_name: auth-service-db
+    environment:
+      - POSTGRES_DB=auth-service
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test 
+    ports:
+      - "5400:5432"
+    volumes:
+      - auth-service-db:/var/lib/postgresql/data
+
+volumes:
+  auth-service-db:
+    name: auth-service-db

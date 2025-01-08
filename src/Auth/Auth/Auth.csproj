@@ -4,17 +4,21 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>ad64cb8b-b93d-44fa-b9f8-09207b37741c</UserSecretsId>
+    <UserSecretsId>5fe8c851-4d61-4b91-9e0d-97936d575369</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
-    <RootNamespace>Egeshka.ApiGateway</RootNamespace>
-    <AssemblyName>Egeshka.ApiGateway</AssemblyName>
+    <DockerfileContext>..\..\..</DockerfileContext>
+    <RootNamespace>Egeshka.Auth</RootNamespace>
+    <AssemblyName>Egeshka.Auth</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
