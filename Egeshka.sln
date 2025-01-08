@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{A4EFC413-76FD-4919-B6F0-6B0A66A0041F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C5435ED2-CED6-4F2F-93E5-5528550997EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2F98D446-9D50-4B06-ADE5-9D28CDCDF6AC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "src\ApiGateway\ApiGateway.csproj", "{EADD97DB-C671-4B87-A1BE-AA58EECF49E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{A7C79520-ECA3-4896-9E37-F8C1511F67D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthBot", "src\AuthBot\AuthBot\AuthBot.csproj", "{9E943E8F-29AF-4573-B6F0-87A574885C73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EADD97DB-C671-4B87-A1BE-AA58EECF49E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EADD97DB-C671-4B87-A1BE-AA58EECF49E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EADD97DB-C671-4B87-A1BE-AA58EECF49E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EADD97DB-C671-4B87-A1BE-AA58EECF49E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E943E8F-29AF-4573-B6F0-87A574885C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E943E8F-29AF-4573-B6F0-87A574885C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E943E8F-29AF-4573-B6F0-87A574885C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E943E8F-29AF-4573-B6F0-87A574885C73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EADD97DB-C671-4B87-A1BE-AA58EECF49E3} = {C5435ED2-CED6-4F2F-93E5-5528550997EF}
+		{A7C79520-ECA3-4896-9E37-F8C1511F67D3} = {C5435ED2-CED6-4F2F-93E5-5528550997EF}
+		{9E943E8F-29AF-4573-B6F0-87A574885C73} = {C5435ED2-CED6-4F2F-93E5-5528550997EF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {587C15A5-FA09-4451-B868-3C5E8B709D7A}
+	EndGlobalSection
+EndGlobal
