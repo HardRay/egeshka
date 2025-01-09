@@ -1,4 +1,7 @@
 ﻿using Egeshka.AuthBot.Constants;
+using Egeshka.AuthBot.Mappers;
+using Egeshka.AuthBot.Models;
+using Egeshka.AuthBot.Providers.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
@@ -7,10 +10,16 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Egeshka.AuthBot.Services;
 
-public sealed class TelegramService(IConfiguration configuration, ILogger<TelegramService> logger) : ITelegramService
+public sealed class TelegramService(
+    IConfiguration configuration,
+    ILogger<TelegramService> logger,
+    IAuthProvider authProvider) : ITelegramService
 {
     private readonly ITelegramBotClient _botClient = new TelegramBotClient(GetBotToken(configuration));
     private readonly ReceiverOptions _receiverOptions = new() { AllowedUpdates = [UpdateType.Message] };
+
+    private readonly string _appLink = GetAppLink(configuration);
+    private const string RegistrationTokenAlias = "{RegistrationToken}";
 
     private static string GetBotToken(IConfiguration configuration)
     {
@@ -23,6 +32,19 @@ public sealed class TelegramService(IConfiguration configuration, ILogger<Telegr
         }
 
         return botToken;
+    }
+
+    private static string GetAppLink(IConfiguration configuration)
+    {
+        const string Option = "AppLink";
+
+        var appLink = configuration.GetValue<string>(Option);
+        if (string.IsNullOrEmpty(appLink))
+        {
+            throw new ArgumentException($"Требуется указать настройку {Option} или она пустая");
+        }
+
+        return appLink;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
@@ -79,21 +101,38 @@ public sealed class TelegramService(IConfiguration configuration, ILogger<Telegr
     {
         var chatId = message.Chat.Id;
 
-        await _botClient.SendMessage(chatId, BotMessages.Greeting, replyMarkup: GetContactKeyboard(), cancellationToken: cancellationToken);
+        await _botClient.SendMessage(chatId,
+            BotMessages.Greeting,
+            replyMarkup: GetContactKeyboard(),
+            cancellationToken: cancellationToken);
     }
 
-    private Task HandleContactAsync(Message message, CancellationToken cancellationToken)
+    private async Task HandleContactAsync(Message message, CancellationToken cancellationToken)
     {
         if (message.Contact is null)
         {
             logger.LogError("Не указан контакт пользователя");
-            return Task.CompletedTask;
+            return;
         }
 
-        logger.LogInformation("Пользователь прислал свой контакт! Номер: {PhoneNumber}", message.Contact.PhoneNumber);
+        var chatId = message.Chat.Id;
+        var registrationModel = message.Contact.ToRegistrationModel(chatId);
+        var registrationResult = await authProvider.RegistrationAsync(registrationModel, cancellationToken);
 
+        if (registrationResult is null)
+        {
+            await _botClient.SendMessage(chatId,
+                BotMessages.RegistrationError,
+                replyMarkup: GetContactKeyboard(),
+                cancellationToken: cancellationToken);
 
-        return Task.CompletedTask;
+            return;
+        }
+
+        await _botClient.SendMessage(chatId,
+                BotMessages.Login,
+                replyMarkup: GetLoginKeyboard(registrationResult.RegistrationToken),
+                cancellationToken: cancellationToken);
     }
 
     private async Task HandleUnknownMessageAsync(Message message, CancellationToken cancellationToken)
@@ -116,5 +155,18 @@ public sealed class TelegramService(IConfiguration configuration, ILogger<Telegr
         {
             ResizeKeyboard = true,
         };
+    }
+
+    private InlineKeyboardMarkup GetLoginKeyboard(string registrationToken)
+    {
+        var deepLink = _appLink.Replace(RegistrationTokenAlias, registrationToken);
+        return new InlineKeyboardMarkup(
+            new List<InlineKeyboardButton[]>()
+            {
+                new InlineKeyboardButton[]
+                {
+                    InlineKeyboardButton.WithUrl("Войти", deepLink),
+                },
+            });
     }
 }

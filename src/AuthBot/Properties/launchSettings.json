@@ -5,7 +5,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "HTTP_PORT": "5106",
-        "BOT_TOKEN": "7674781052:AAHzqiTXhOUEv2dUUeP2CZit-UKupEPhQ6k"
+        "AUTH_ADDRESS": "http://localhost:5007"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5066"
