@@ -11,8 +11,8 @@ public sealed class CreateRegistation : SqlMigration
 {
     protected override string GetUpSql(IServiceProvider services) =>
         """
-            create table if not exists registrations(
-                id bigint primary key,
+            create table if not exists (
+                id bigserial primary key,
                 telegram_user_id bigint not null,
                 mobile_number varchar(20) not null,
                 first_name varchar(100) not null,

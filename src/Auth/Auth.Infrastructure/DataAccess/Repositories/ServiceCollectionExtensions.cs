@@ -1,4 +1,5 @@
-﻿using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Common;
+﻿using Egeshka.Auth.Application.Repository;
+using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Common;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Egeshka.Auth.Infrastructure.DataAccess.Repositories;
@@ -15,8 +16,9 @@ public static partial class ServiceCollectionExtensions
         this IServiceCollection collection,
         string connectionString)
     {
-
         collection.AddSingleton<IPostgresConnectionFactory>(x => new PostgresConnectionFactory(connectionString));
+
+        collection.AddScoped<IRegistrationRepository, RegistrationRepository>();
 
         return collection;
     }

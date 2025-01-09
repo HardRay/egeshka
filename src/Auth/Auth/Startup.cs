@@ -1,4 +1,5 @@
-﻿using Egeshka.Auth.Infrastructure;
+﻿using Egeshka.Auth.GrpcServices;
+using Egeshka.Auth.Infrastructure;
 
 namespace Egeshka.Auth;
 
@@ -11,6 +12,9 @@ public sealed class Startup(IConfiguration configuration)
 
         serviceCollection.AddEndpointsApiExplorer();
         serviceCollection.AddSwaggerGen();
+
+        serviceCollection.AddGrpc();
+        serviceCollection.AddGrpcReflection();
     }
 
     public void Configure(IApplicationBuilder applicationBuilder)
@@ -19,10 +23,12 @@ public sealed class Startup(IConfiguration configuration)
         applicationBuilder.UseSwagger();
         applicationBuilder.UseSwaggerUI();
 
-        //applicationBuilder.UseEndpoints(
-        //    endpointRouteBuilder =>
-        //    {
-        //        endpointRouteBuilder.MapGrpcReflectionService();
-        //    });
+        applicationBuilder.UseEndpoints(
+            endpointRouteBuilder =>
+            {
+                endpointRouteBuilder.MapGet("", () => "Hello Wold!");
+                endpointRouteBuilder.MapGrpcReflectionService();
+                endpointRouteBuilder.MapGrpcService<AuthGrpcService>();
+            });
     }
 }

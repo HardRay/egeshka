@@ -1,6 +1,7 @@
 ﻿using FluentMigrator.Runner;
 using FluentMigrator.Runner.Processors;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Egeshka.Auth.Infrastructure.DataAccess.Migrations.Common;
 
@@ -16,7 +17,7 @@ public static partial class ServiceCollectionExtensions
         this IServiceCollection collection,
         string connectionString)
     {
-        var assembly = typeof(Zero).Assembly;
+        var assembly = Assembly.GetExecutingAssembly();
 
         collection.AddFluentMigratorCore()
             .ConfigureRunner(

@@ -1,4 +1,5 @@
-﻿using Egeshka.Auth.Infrastructure.DataAccess;
+﻿using Egeshka.Auth.Application;
+using Egeshka.Auth.Infrastructure.DataAccess;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -18,7 +19,8 @@ public static partial class ServiceCollectionExtensions
         IConfiguration configuration)
     {
         collection
-            .AddDataAccess(configuration);
+            .AddDataAccess(configuration)
+            .AddApplication();
 
         return collection;
     }
