@@ -1,25 +1,32 @@
 ﻿using Egeshka.ApiGateway.Dtos;
 using Egeshka.ApiGateway.Dtos.UserLogin;
+using Egeshka.ApiGateway.Dtos.UserRelogin;
+using Egeshka.ApiGateway.Providers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Egeshka.ApiGateway.Controllers;
 
 [ApiController]
 [Route("/api/user")]
-public class UserController : ControllerBase
+public class UserController(IAuthProvider authProvider) : ControllerBase
 {
     [HttpPost("login")]
     [ProducesDefaultResponseType]
     [ProducesResponseType<UserLoginResponse>(StatusCodes.Status200OK)]
-    [ProducesResponseType<ProblemDetailsModel>(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Login(UserLoginRequest request, CancellationToken cancellationToken)
+    [ProducesResponseType<ErrorDto>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ErrorDto>(StatusCodes.Status404NotFound)]
+    public Task<UserLoginResponse> Login(UserLoginRequest request, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrEmpty(request.RegistrationToken) && string.IsNullOrEmpty(request.RefreshToken))
-            return BadRequest(ProblemDetailsModel.Create("1000", $"Должено быть заполнено одно из полей: {nameof(UserLoginRequest.RegistrationToken)} или {nameof(UserLoginRequest.RefreshToken)}"));
+        return authProvider.LoginAsync(request, cancellationToken);
+    }
 
-        if (!string.IsNullOrEmpty(request.RegistrationToken) && !string.IsNullOrEmpty(request.RefreshToken))
-            return BadRequest(ProblemDetailsModel.Create("1000", $"Должено быть заполнено только одно из полей: {nameof(UserLoginRequest.RegistrationToken)} или {nameof(UserLoginRequest.RefreshToken)}"));
-
-        return Ok(UserLoginResponse.Generate());
+    [HttpPost("relogin")]
+    [ProducesDefaultResponseType]
+    [ProducesResponseType<UserLoginResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ErrorDto>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ErrorDto>(StatusCodes.Status404NotFound)]
+    public Task<UserReloginResponse> Relogin(UserReloginRequest request, CancellationToken cancellationToken)
+    {
+        return authProvider.ReloginAsync(request, cancellationToken);
     }
 }

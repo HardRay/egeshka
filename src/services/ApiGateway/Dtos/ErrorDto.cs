@@ -1,13 +1,13 @@
 ﻿namespace Egeshka.ApiGateway.Dtos;
 
-public sealed class ProblemDetailsModel
+public sealed class ErrorDto
 {
     public required string ErrorCode { get; init; }
     public IReadOnlyCollection<string>? ErrorMessages { get; init; }
 
-    public static ProblemDetailsModel Create(string errorCode, string errorMessage)
+    public static ErrorDto Create(string errorCode, string errorMessage)
     {
-        return new ProblemDetailsModel()
+        return new ErrorDto()
         {
             ErrorCode = errorCode,
             ErrorMessages = [errorMessage]

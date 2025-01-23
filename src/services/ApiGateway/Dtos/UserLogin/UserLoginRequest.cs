@@ -1,4 +1,6 @@
-﻿namespace Egeshka.ApiGateway.Dtos.UserLogin;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Egeshka.ApiGateway.Dtos.UserLogin;
 
 /// <summary>
 /// Запрос получения токена доступа
@@ -8,10 +10,6 @@ public sealed class UserLoginRequest()
     /// <summary>
     /// Токен регистрации
     /// </summary>
-    public string? RegistrationToken { get; init; }
-
-    /// <summary>
-    /// Токен обновления
-    /// </summary>
-    public string? RefreshToken { get; init; }
+    [Required]
+    public required string RegistrationToken { get; init; }
 }

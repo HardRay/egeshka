@@ -6,6 +6,7 @@ import "google/protobuf/wrappers.proto";
 service AuthGrpc {
   rpc Registration(Registration.Request) returns(Registration.Response);
   rpc Login(Login.Request) returns(Login.Response);
+  rpc Relogin(Relogin.Request) returns(Relogin.Response);
 }
 
 message Registration {
@@ -23,14 +24,22 @@ message Registration {
 
 message Login {
   message Request {
-    oneof data{
-      string registration_token = 1;
-      string refresh_token = 2;
-    }
+    string registration_token = 1;
   }
 
   message Response {
-    string registration_token = 1;
+    string access_token = 1;
+    string refresh_token = 2;
+  }
+}
+
+message Relogin {
+  message Request {
+    string refresh_token = 1;
+  }
+
+  message Response {
+    string access_token = 1;
     string refresh_token = 2;
   }
 }

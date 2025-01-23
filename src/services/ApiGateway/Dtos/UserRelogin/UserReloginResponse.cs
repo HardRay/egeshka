@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Egeshka.ApiGateway.Dtos.UserLogin;
+namespace Egeshka.ApiGateway.Dtos.UserRelogin;
 
 /// <summary>
-/// Ответ получения токена доступа
+/// Ответ обновления токена доступа
 /// </summary>
-public sealed class UserLoginResponse
+public sealed class UserReloginResponse
 {
     /// <summary>
     /// Токен доступа
