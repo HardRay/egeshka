@@ -1,17 +1,43 @@
 version: '3.9'
 
 services:
+
+  auth-service:
+    build:
+      context: ./src/Auth
+      dockerfile: Auth/Dockerfile
+    depends_on:
+      - auth-service-db
+    container_name: auth-service
+    ports:
+      - "5201:8080"
+    environment:
+      - GRPC_PORT=8080
+
   auth-service-db:
     image: postgres:latest
     container_name: auth-service-db
     environment:
       - POSTGRES_DB=auth-service
-      - POSTGRES_USER=test
-      - POSTGRES_PASSWORD=test 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${AuthDatabase__Password} 
     ports:
       - "5400:5432"
     volumes:
       - auth-service-db:/var/lib/postgresql/data
+
+  api-gateway:
+    build:
+      context: ./src
+      dockerfile: ApiGateway/Dockerfile
+    container_name: api-gateway
+    environment:
+      - POSTGRES_DB=auth-service
+      - HTTP_PORT=5108
+      - AUTH_ADDRESS=http://auth-service:8080
+    ports:
+      - "5202:5108"
+      
 
 volumes:
   auth-service-db:

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Egeshka.Core.Hosting</AssemblyName>
+    <RootNamespace>Egeshka.Core.Hosting</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Models\Core.Models.csproj" />
+  </ItemGroup>
+
+</Project>
