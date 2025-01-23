@@ -1,25 +1,21 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["src/AuthBot/AuthBot/AuthBot.csproj", "src/AuthBot/AuthBot/"]
-RUN dotnet restore "./src/AuthBot/AuthBot/AuthBot.csproj"
-COPY . .
-WORKDIR "/src/src/AuthBot/AuthBot"
-RUN dotnet build "./AuthBot.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+COPY ["services/AuthBot", "src/services/AuthBot/"]
+
+RUN dotnet restore "src/services/AuthBot/AuthBot.csproj"
+WORKDIR "src/services/AuthBot"
+RUN dotnet build "AuthBot.csproj" -c Release -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./AuthBot.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "AuthBot.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "AuthBot.dll"]
+ENTRYPOINT ["dotnet", "Egeshka.AuthBot.dll"]

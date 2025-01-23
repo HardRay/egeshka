@@ -6,10 +6,10 @@ EXPOSE 8081
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["ApiGateway", "src/ApiGateway/"]
+COPY ["services/ApiGateway", "src/services/ApiGateway/"]
 
-RUN dotnet restore "src/ApiGateway/ApiGateway.csproj"
-WORKDIR "src/ApiGateway"
+RUN dotnet restore "src/services/ApiGateway/ApiGateway.csproj"
+WORKDIR "src/services/ApiGateway"
 RUN dotnet build "ApiGateway.csproj" -c Release -o /app/build
 
 FROM build AS publish

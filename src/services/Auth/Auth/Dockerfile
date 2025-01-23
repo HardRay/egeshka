@@ -6,13 +6,16 @@ EXPOSE 8081
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["Auth", "src/Auth/"]
-COPY ["Auth.Domain", "src/Auth.Domain/"]
-COPY ["Auth.Application", "src/Auth.Application/"]
-COPY ["Auth.Infrastructure", "src/Auth.Infrastructure/"]
+COPY ["libraries/Core.Hosting", "src/libraries/Core.Hosting/"]
+COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
+COPY ["protos/Core.Proto", "src/protos/Core.Proto/"]
+COPY ["services/Auth/Auth", "src/services/Auth/Auth/"]
+COPY ["services/Auth/Auth.Domain", "src/services/Auth/Auth.Domain/"]
+COPY ["services/Auth/Auth.Application", "src/services/Auth/Auth.Application/"]
+COPY ["services/Auth/Auth.Infrastructure", "src/services/Auth/Auth.Infrastructure/"]
 
-RUN dotnet restore "src/Auth/Auth.csproj"
-WORKDIR "src/Auth"
+RUN dotnet restore "src/services/Auth/Auth/Auth.csproj"
+WORKDIR "src/services/Auth/Auth"
 RUN dotnet build "Auth.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -4,8 +4,8 @@ services:
 
   auth-service:
     build:
-      context: ./src/Auth
-      dockerfile: Auth/Dockerfile
+      context: ./src
+      dockerfile: services/Auth/Auth/Dockerfile
     depends_on:
       - auth-service-db
     container_name: auth-service
@@ -13,6 +13,7 @@ services:
       - "5201:8080"
     environment:
       - GRPC_PORT=8080
+      - AuthDatabasePassword=${AuthDatabasePassword}
 
   auth-service-db:
     image: postgres:latest
@@ -20,7 +21,7 @@ services:
     environment:
       - POSTGRES_DB=auth-service
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${AuthDatabase__Password} 
+      - POSTGRES_PASSWORD=${AuthDatabasePassword} 
     ports:
       - "5400:5432"
     volumes:
@@ -29,15 +30,24 @@ services:
   api-gateway:
     build:
       context: ./src
-      dockerfile: ApiGateway/Dockerfile
+      dockerfile: services/ApiGateway/Dockerfile
     container_name: api-gateway
     environment:
-      - POSTGRES_DB=auth-service
       - HTTP_PORT=5108
       - AUTH_ADDRESS=http://auth-service:8080
     ports:
       - "5202:5108"
-      
+
+  auth-bot:
+    build:
+      context: ./src
+      dockerfile: services/AuthBot/Dockerfile
+    container_name: auth-bot
+    environment:
+      - BOT_TOKEN=${BotApiToken}
+      - AUTH_ADDRESS=http://auth-service:8080
+    ports:
+      - "5203:8080"
 
 volumes:
   auth-service-db:
