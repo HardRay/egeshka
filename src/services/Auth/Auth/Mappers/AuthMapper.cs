@@ -1,6 +1,5 @@
 ﻿using Egeshka.Auth.Application.Commands.Login;
 using Egeshka.Auth.Application.Commands.Registration;
-using Egeshka.Auth.Application.Models;
 using Egeshka.Auth.Domain.ValueObjects;
 using Egeshka.Auth.Grpc;
 
@@ -34,8 +33,8 @@ public static class AuthMapper
     {
         return new Login.Types.Response()
         {
-            AccessToken = result.AccessToken,
-            RefreshToken = result.RefreshToken
+            AccessToken = result.Data.AccessToken,
+            RefreshToken = result.Data.RefreshToken
         };
     }
 }

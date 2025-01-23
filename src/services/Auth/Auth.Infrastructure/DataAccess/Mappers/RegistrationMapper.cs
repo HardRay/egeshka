@@ -1,4 +1,5 @@
 ﻿using Egeshka.Auth.Application.Models;
+using Egeshka.Auth.Application.Models.Repository;
 using Egeshka.Auth.Domain.ValueObjects;
 using Egeshka.Auth.Infrastructure.DataAccess.DbModels;
 
@@ -15,6 +16,16 @@ public static class RegistrationMapper
             FirstName: dbModel.FirstName,
             LastName: dbModel.LastName,
             RegistrationToken: dbModel.RegistrationToken,
-            CreatedAt: dbModel.CreatedAt);
+            CreatedAt: dbModel.CreatedAt,
+            UpdateAt: dbModel.UpdateAt);
+    }
+
+    public static UserInsertModel ToUserInsertModel(this RegistrationDbModel model)
+    {
+        return new UserInsertModel(
+            TelegramUserId: new(model.TelegramUserId),
+            MobileNumber: MobileNumber.Create(model.MobileNumber),
+            FirstName: model.FirstName,
+            LastName: model.LastName);
     }
 }

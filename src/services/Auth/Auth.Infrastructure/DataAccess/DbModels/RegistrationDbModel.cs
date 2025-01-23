@@ -7,4 +7,5 @@ public sealed record RegistrationDbModel(
     string FirstName,
     string? LastName,
     string RegistrationToken,
-    DateTime CreatedAt);
+    DateTime CreatedAt,
+    DateTime UpdateAt);

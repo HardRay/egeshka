@@ -1,5 +1,4 @@
-﻿using Egeshka.Auth.Application.Models;
-using MediatR;
+﻿using MediatR;
 
 namespace Egeshka.Auth.Application.Commands.Login;
 

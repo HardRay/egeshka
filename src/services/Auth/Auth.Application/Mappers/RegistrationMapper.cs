@@ -1,4 +1,5 @@
 ﻿using Egeshka.Auth.Application.Commands.Registration;
+using Egeshka.Auth.Application.Models;
 using Egeshka.Auth.Application.Models.Repository;
 
 namespace Egeshka.Auth.Application.Mappers;

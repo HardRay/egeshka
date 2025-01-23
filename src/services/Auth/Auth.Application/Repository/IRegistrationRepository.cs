@@ -6,6 +6,6 @@ namespace Egeshka.Auth.Application.Repository;
 public interface IRegistrationRepository
 {
     Task InsertAsync(RegistrationInsertModel model, CancellationToken cancellationToken);
-
     Task<RegistrationModel?> GetByTokenAsync(string token, CancellationToken cancellationToken);
+    Task<RegistrationModel?> GetByIdAsync(long id, CancellationToken cancellationToken);
 }

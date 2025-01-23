@@ -9,4 +9,5 @@ public sealed record RegistrationModel(
     string FirstName,
     string? LastName,
     string RegistrationToken,
-    DateTimeOffset CreatedAt);
+    DateTimeOffset CreatedAt,
+    DateTimeOffset UpdateAt);
