@@ -1,5 +1,6 @@
 ﻿using Egeshka.Auth.Application.Commands.Login;
 using Egeshka.Auth.Application.Commands.Registration;
+using Egeshka.Auth.Application.Commands.Relogin;
 using Egeshka.Auth.Domain.ValueObjects;
 using Egeshka.Auth.Grpc;
 
@@ -32,6 +33,20 @@ public static class AuthMapper
     public static Login.Types.Response ToProto(this LoginResult result)
     {
         return new Login.Types.Response()
+        {
+            AccessToken = result.Data.AccessToken,
+            RefreshToken = result.Data.RefreshToken
+        };
+    }
+
+    public static ReloginCommand ToServiceCommand(this Relogin.Types.Request request)
+    {
+        return new ReloginCommand(RefreshToken: request.RefreshToken);
+    }
+
+    public static Relogin.Types.Response ToProto(this ReloginResult result)
+    {
+        return new Relogin.Types.Response()
         {
             AccessToken = result.Data.AccessToken,
             RefreshToken = result.Data.RefreshToken

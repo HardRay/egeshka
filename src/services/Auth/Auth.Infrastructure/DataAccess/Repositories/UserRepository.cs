@@ -1,5 +1,7 @@
 ﻿using Egeshka.Auth.Application.Models.Repository;
 using Egeshka.Auth.Application.Repository;
+using Egeshka.Auth.Domain.Entities;
+using Egeshka.Auth.Domain.ValueObjects;
 using Egeshka.Auth.Infrastructure.DataAccess.Mappers;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Common;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Internal.Interfaces;
@@ -28,7 +30,7 @@ public sealed class UserRepository(
 
         await transaction.CommitAsync(cancellationToken);
 
-        return new UserCreationResult(userId);
+        return new UserCreationResult(new UserId(userId));
     }
 
     public async Task InsertSessionAsync(SessionInsertModel session, CancellationToken cancellationToken)
@@ -37,5 +39,23 @@ public sealed class UserRepository(
         await connection.OpenAsync(cancellationToken);
 
         await sessionRepository.InsertAsync(connection, session, cancellationToken);
+    }
+
+    public async Task<Session?> GetSessionByRefreshToken(string refreshToken, CancellationToken cancellationToken)
+    {
+        using var connection = connectionFactory.GetConnection();
+        await connection.OpenAsync(cancellationToken);
+
+        var session = await sessionRepository.GetByRefreshTokenAsync(connection, refreshToken, cancellationToken);
+
+        return session?.ToServiceModel();
+    }
+
+    public async Task UpdateSessionAsync(SessionUpdateModel session, CancellationToken cancellationToken)
+    {
+        using var connection = connectionFactory.GetConnection();
+        await connection.OpenAsync(cancellationToken);
+
+        await sessionRepository.UpdateSession(connection, session, cancellationToken);
     }
 }

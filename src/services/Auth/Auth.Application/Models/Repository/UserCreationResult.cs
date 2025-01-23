@@ -1,3 +1,5 @@
-﻿namespace Egeshka.Auth.Application.Models.Repository;
+﻿using Egeshka.Auth.Domain.ValueObjects;
 
-public sealed record UserCreationResult(long UserId);
+namespace Egeshka.Auth.Application.Models.Repository;
+
+public sealed record UserCreationResult(UserId UserId);

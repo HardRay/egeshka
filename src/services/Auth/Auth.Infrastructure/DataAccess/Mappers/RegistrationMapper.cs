@@ -1,5 +1,5 @@
-﻿using Egeshka.Auth.Application.Models;
-using Egeshka.Auth.Application.Models.Repository;
+﻿using Egeshka.Auth.Application.Models.Repository;
+using Egeshka.Auth.Domain.Entities;
 using Egeshka.Auth.Domain.ValueObjects;
 using Egeshka.Auth.Infrastructure.DataAccess.DbModels;
 
@@ -7,10 +7,10 @@ namespace Egeshka.Auth.Infrastructure.DataAccess.Mappers;
 
 public static class RegistrationMapper
 {
-    public static RegistrationModel ToServiceModel(this RegistrationDbModel dbModel)
+    public static Registration ToServiceModel(this RegistrationDbModel dbModel)
     {
-        return new RegistrationModel(
-            Id: dbModel.Id,
+        return new Registration(
+            Id: new RegistrationId(dbModel.Id),
             TelegramUserId: new TelegramUserId(dbModel.TelegramUserId),
             MobileNumber: MobileNumber.Create(dbModel.MobileNumber),
             FirstName: dbModel.FirstName,

@@ -8,4 +8,6 @@ public sealed record Registration(
     MobileNumber MobileNumber,
     string FirstName,
     string? LastName,
-    string RegistrationToken);
+    string RegistrationToken,
+    DateTimeOffset CreatedAt,
+    DateTimeOffset UpdateAt);

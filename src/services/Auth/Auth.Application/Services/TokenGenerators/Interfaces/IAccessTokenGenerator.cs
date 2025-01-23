@@ -1,6 +1,8 @@
-﻿namespace Egeshka.Auth.Application.Services.TokenGenerators.Interfaces;
+﻿using Egeshka.Auth.Domain.ValueObjects;
+
+namespace Egeshka.Auth.Application.Services.TokenGenerators.Interfaces;
 
 public interface IAccessTokenGenerator
 {
-    string GenerateToken(long userId);
+    string GenerateToken(UserId userId);
 }

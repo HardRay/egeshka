@@ -1,4 +1,5 @@
 ﻿using Egeshka.Auth.Application.Services.TokenGenerators.Interfaces;
+using Egeshka.Auth.Domain.ValueObjects;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,7 +9,7 @@ namespace Egeshka.Auth.Application.Services.TokenGenerators;
 
 public class AccessTokenGenerator : IAccessTokenGenerator
 {
-    public string GenerateToken(long userId)
+    public string GenerateToken(UserId userId)
     {
         var claims = new List<Claim> { };
         var jwt = new JwtSecurityToken(

@@ -3,6 +3,7 @@ using Egeshka.Auth.Application.Models;
 using Egeshka.Auth.Application.Models.Repository;
 using Egeshka.Auth.Application.Repository;
 using Egeshka.Auth.Application.Services.Interfaces;
+using Egeshka.Auth.Domain.Entities;
 using Egeshka.Auth.Infrastructure.DataAccess.DbModels;
 using Egeshka.Auth.Infrastructure.DataAccess.Mappers;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Common;
@@ -56,7 +57,7 @@ public sealed class RegistrationRepository(
         await connection.ExecuteAsync(cmd);
     }
 
-    public async Task<RegistrationModel?> GetByTokenAsync(string token, CancellationToken cancellationToken)
+    public async Task<Registration?> GetByTokenAsync(string token, CancellationToken cancellationToken)
     {
         const string Sql =
             $"""
@@ -75,7 +76,7 @@ public sealed class RegistrationRepository(
         return registration?.ToServiceModel();
     }
 
-    public async Task<RegistrationModel?> GetByIdAsync(long id, CancellationToken cancellationToken)
+    public async Task<Registration?> GetByIdAsync(long id, CancellationToken cancellationToken)
     {
         using var connection = connectionFactory.GetConnection();
         await connection.OpenAsync(cancellationToken);

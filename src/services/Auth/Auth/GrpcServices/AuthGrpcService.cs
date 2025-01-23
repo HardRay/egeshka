@@ -22,4 +22,12 @@ public sealed class AuthGrpcService(IMediator mediator) : AuthGrpc.AuthGrpcBase
 
         return result.ToProto();
     }
+
+    public override async Task<Relogin.Types.Response> Relogin(
+        Relogin.Types.Request request, ServerCallContext context)
+    {
+        var result = await mediator.Send(request.ToServiceCommand(), cancellationToken: context.CancellationToken);
+
+        return result.ToProto();
+    }
 }

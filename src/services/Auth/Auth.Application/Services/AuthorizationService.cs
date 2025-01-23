@@ -1,6 +1,7 @@
 ﻿using Egeshka.Auth.Application.Models;
 using Egeshka.Auth.Application.Services.Interfaces;
 using Egeshka.Auth.Application.Services.TokenGenerators.Interfaces;
+using Egeshka.Auth.Domain.ValueObjects;
 
 namespace Egeshka.Auth.Application.Services;
 
@@ -9,7 +10,7 @@ public sealed class AuthorizationService(
     IRefreshTokenGenerator refreshTokenGenerator)
     : IAuthorizationService
 {
-    public Task<AuthorizationData> GenerateAuthorizationDataAsync(long userId, CancellationToken cancellationToken)
+    public Task<AuthorizationData> GenerateAuthorizationDataAsync(UserId userId, CancellationToken cancellationToken)
     {
         var accessToken = accessTokenGenerator.GenerateToken(userId);
         var refreshToken = refreshTokenGenerator.GenerateToken(userId);
