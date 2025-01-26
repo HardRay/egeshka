@@ -17,7 +17,7 @@ public sealed class Startup(IConfiguration configuration)
         serviceCollection.AddGrpc(options =>
         {
             options.Interceptors.Add<ExceptionsHandlingInterceptor>();
-            //options.EnableDetailedErrors = true;
+            options.EnableDetailedErrors = true;
         });
         serviceCollection.AddGrpcReflection();
     }

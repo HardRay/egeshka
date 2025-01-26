@@ -1,6 +1,8 @@
-﻿using Egeshka.ApiGateway.Providers;
+﻿using Egeshka.ApiGateway.ExceptionHandlers;
+using Egeshka.ApiGateway.Providers;
 using Egeshka.ApiGateway.Providers.Interfaces;
 using Egeshka.Auth.Grpc;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Egeshka.ApiGateway.Extensions;
 
@@ -18,6 +20,15 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.AddAuthorization();
+
+        return services;
+    }
+
+    public static IServiceCollection AddExceptionHandlers(
+        this IServiceCollection services)
+    {
+        services.AddExceptionHandler<RpcExceptionHandler>();
+        services.AddExceptionHandler<GlobalExceptionHandler>();
 
         return services;
     }

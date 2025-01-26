@@ -4,12 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>Egeshka.Core.Models</AssemblyName>
-    <RootNamespace>Egeshka.Core.Models</RootNamespace>
+    <RootNamespace>Egeshka.Proto.Auth</RootNamespace>
+    <AssemblyName>Egeshka.Proto.Auth</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\protos\Proto.Core\Proto.Core.csproj" />
+    <ProjectReference Include="..\Proto.Core\Proto.Core.csproj" />
   </ItemGroup>
 
 </Project>

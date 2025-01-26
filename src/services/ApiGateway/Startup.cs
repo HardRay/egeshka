@@ -21,12 +21,13 @@ public class Startup(IConfiguration configuration)
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        services.AddExceptionHandlers();
     }
 
     public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment env)
     {
-        if (env.IsDevelopment())
-            applicationBuilder.UseDeveloperExceptionPage();
+        applicationBuilder.UseExceptionHandler(_ => { });
 
         applicationBuilder.UseRouting();
         applicationBuilder.UseAuthentication();

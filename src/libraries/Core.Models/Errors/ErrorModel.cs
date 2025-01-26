@@ -3,15 +3,15 @@ using System.Net;
 
 namespace Egeshka.Core.Models.Errors;
 
-public sealed class GrpcErrorModel
+public sealed class ErrorModel
 {
     public required string ErrorCode { get; init; }
     public IReadOnlyCollection<string>? ErrorMessages { get; init; }
     public HttpStatusCode HttpStatusCode { get; init; }
 
-    public static GrpcErrorModel Create(string errorCode, HttpStatusCode httpStatusCode, string errorMessage)
+    public static ErrorModel Create(string errorCode, HttpStatusCode httpStatusCode, string errorMessage)
     {
-        return new GrpcErrorModel()
+        return new ErrorModel()
         {
             ErrorCode = errorCode,
             HttpStatusCode = httpStatusCode,
@@ -19,9 +19,9 @@ public sealed class GrpcErrorModel
         };
     }
 
-    public static GrpcErrorModel GetUnknownError()
+    public static ErrorModel GetUnknownError()
     {
-        return new GrpcErrorModel()
+        return new ErrorModel()
         {
             ErrorCode = ErrorCodes.Unknown,
             HttpStatusCode = HttpStatusCode.InternalServerError,

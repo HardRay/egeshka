@@ -1,0 +1,8 @@
+syntax = "proto3";
+option csharp_namespace = "Egeshka.Grpc.Common";
+
+message GrpcErrorModel {
+    string error_code = 1;
+    repeated string messages = 2;
+    int32 http_status_code = 3;
+}

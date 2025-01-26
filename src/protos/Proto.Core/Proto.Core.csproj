@@ -4,13 +4,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>Egeshka.Core.Proto</AssemblyName>
-    <RootNamespace>Egeshka.Core.Proto</RootNamespace>
+    <RootNamespace>Egeshka.Proto.Core</RootNamespace>
+    <AssemblyName>Egeshka.Proto.Core</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.67.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="common.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>
