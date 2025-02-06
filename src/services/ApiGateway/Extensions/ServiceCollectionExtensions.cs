@@ -44,7 +44,7 @@ public static class ServiceCollectionExtensions
                         RequireExpirationTime = true,
                         ValidateLifetime = true,
                         ValidIssuer = authOptions.Issuer,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mysupersecret_secretsecretsecretkey"))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authOptions.SecretKey))
                     };
                 });
 
