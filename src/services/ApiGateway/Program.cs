@@ -18,6 +18,7 @@ public class Program
                         {
                             option.ListenPortByOptions(HTTP_PORT, HttpProtocols.Http1);
                         }))
+            .ConfigureAppConfiguration(builder => builder.AddEnvironmentVariables())
             .Build()
             .RunAsync();
     }

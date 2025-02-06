@@ -26,7 +26,7 @@ public class AccessTokenProvider(
             [
                 new Claim(JwtRegisteredClaimNames.Sub, userId.ToString())
             ]),
-            Expires = dateTimeProvider.UtcNow.AddMinutes(authOptions.Value.ExpirationInMinutes).DateTime,
+            Expires = dateTimeProvider.Now.AddMinutes(authOptions.Value.ExpirationInMinutes).DateTime,
             SigningCredentials = credentials,
             Issuer = authOptions.Value.Issuer,
             Audience = authOptions.Value.Audience

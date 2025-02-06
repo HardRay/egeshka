@@ -1,8 +1,11 @@
 ﻿using Egeshka.ApiGateway.ExceptionHandlers;
+using Egeshka.ApiGateway.Options;
 using Egeshka.ApiGateway.Providers;
 using Egeshka.ApiGateway.Providers.Interfaces;
 using Egeshka.Auth.Grpc;
-using Google.Protobuf.WellKnownTypes;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace Egeshka.ApiGateway.Extensions;
 
@@ -17,9 +20,34 @@ public static class ServiceCollectionExtensions
     }
 
     public static IServiceCollection ConfigureAuthentication(
-        this IServiceCollection services)
+        this IServiceCollection services,
+        IConfiguration configuration)
     {
-        services.AddAuthorization();
+        var authOptions = configuration.GetSection(nameof(AuthOptions)).Get<AuthOptions>()
+            ?? throw new InvalidOperationException("AuthOptions is null. Check configuration");
+
+        services
+            .AddAuthorization()
+            .AddAuthentication("Bearer")
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = authOptions.Issuer;
+                    options.Audience = authOptions.Audience;
+                    options.SaveToken = true;
+                    options.RequireHttpsMetadata = false;
+                    options.MapInboundClaims = false;
+                    options.MapInboundClaims = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        RequireAudience = false,
+                        ValidateAudience = false,
+                        RequireExpirationTime = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = authOptions.Issuer,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mysupersecret_secretsecretsecretkey"))
+                    };
+                });
+
 
         return services;
     }
@@ -58,6 +86,36 @@ public static class ServiceCollectionExtensions
             }
 
             options.Address = new Uri(url);
+        });
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureSwagger(
+        this IServiceCollection services)
+    {
+        services.AddSwaggerGen(setup =>
+        {
+            var jwtSecurityScheme = new OpenApiSecurityScheme
+            {
+                Scheme = "bearer",
+                BearerFormat = "JWT",
+                Name = "JWT Authentication",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Description = "Please Put **ONLY** JWT Bearer token",
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            };
+
+            setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+            setup.AddSecurityRequirement(new OpenApiSecurityRequirement()
+            {
+                { jwtSecurityScheme, Array.Empty<string>() }
+            });
         });
 
         return services;

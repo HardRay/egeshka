@@ -2,6 +2,7 @@
 using Egeshka.ApiGateway.Dtos.UserLogin;
 using Egeshka.ApiGateway.Dtos.UserRelogin;
 using Egeshka.ApiGateway.Providers.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Egeshka.ApiGateway.Controllers;
@@ -28,5 +29,12 @@ public class UserController(IAuthProvider authProvider) : ControllerBase
     public Task<UserReloginResponse> Relogin(UserReloginRequest request, CancellationToken cancellationToken)
     {
         return authProvider.ReloginAsync(request, cancellationToken);
+    }
+
+    [HttpGet("hello")]
+    [Authorize]
+    public Task<string> Hello(CancellationToken cancellationToken)
+    {
+        return Task.FromResult("Hello World");
     }
 }

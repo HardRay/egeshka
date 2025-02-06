@@ -9,7 +9,7 @@ public class Startup(IConfiguration configuration)
     {
         services
             .AddApplicationServices()
-            .ConfigureAuthentication()
+            .ConfigureAuthentication(configuration)
             .ConfigureGrpc(configuration);
 
         services
@@ -20,7 +20,7 @@ public class Startup(IConfiguration configuration)
             });
 
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.ConfigureSwagger();
 
         services.AddExceptionHandlers();
     }
@@ -30,6 +30,7 @@ public class Startup(IConfiguration configuration)
         applicationBuilder.UseExceptionHandler(_ => { });
 
         applicationBuilder.UseRouting();
+        //applicationBuilder.UseHttpsRedirection();
         applicationBuilder.UseAuthentication();
         applicationBuilder.UseAuthorization();
 
