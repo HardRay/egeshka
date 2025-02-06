@@ -30,19 +30,15 @@ public class Startup(IConfiguration configuration)
         applicationBuilder.UseExceptionHandler(_ => { });
 
         applicationBuilder.UseRouting();
-        //applicationBuilder.UseHttpsRedirection();
         applicationBuilder.UseAuthentication();
         applicationBuilder.UseAuthorization();
 
         applicationBuilder.UseSwagger();
         applicationBuilder.UseSwaggerUI();
 
-        applicationBuilder.UseEndpoints(
-            endpointRouteBuilder =>
-            {
-                endpointRouteBuilder.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action}/{id?}");
-            });
+        applicationBuilder.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
     }
 }

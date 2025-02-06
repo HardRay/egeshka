@@ -5,6 +5,7 @@ using Egeshka.ApiGateway.Providers.Interfaces;
 using Egeshka.Auth.Grpc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 
 namespace Egeshka.ApiGateway.Extensions;
@@ -117,7 +118,8 @@ public static class ServiceCollectionExtensions
                 { jwtSecurityScheme, Array.Empty<string>() }
             });
 
-            setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Egeshka.ApiGateway.xml"));
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
         });
 
         return services;
