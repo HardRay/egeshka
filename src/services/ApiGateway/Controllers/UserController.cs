@@ -9,9 +9,10 @@ namespace Egeshka.ApiGateway.Controllers;
 
 [ApiController]
 [Route("/api/user")]
-public class UserController(IAuthProvider authProvider) : ControllerBase
+public class UserController(IAuthProvider authProvider) : ControllerBaseWithIdentity
 {
     [HttpPost("login")]
+    [AllowAnonymous]
     [ProducesDefaultResponseType]
     [ProducesResponseType<UserLoginResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ErrorDto>(StatusCodes.Status400BadRequest)]
@@ -22,6 +23,7 @@ public class UserController(IAuthProvider authProvider) : ControllerBase
     }
 
     [HttpPost("relogin")]
+    [AllowAnonymous]
     [ProducesDefaultResponseType]
     [ProducesResponseType<UserLoginResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ErrorDto>(StatusCodes.Status400BadRequest)]
@@ -31,10 +33,9 @@ public class UserController(IAuthProvider authProvider) : ControllerBase
         return authProvider.ReloginAsync(request, cancellationToken);
     }
 
-    [HttpGet("hello")]
-    [Authorize]
-    public Task<string> Hello(CancellationToken cancellationToken)
+    [HttpGet("id")]
+    public Task<long> GetMyId()
     {
-        return Task.FromResult("Hello World");
+        return Task.FromResult(GetUserIdOrThrow());
     }
 }
