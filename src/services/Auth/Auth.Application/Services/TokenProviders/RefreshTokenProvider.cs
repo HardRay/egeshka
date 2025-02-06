@@ -1,5 +1,6 @@
 ﻿using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
 using Egeshka.Auth.Domain.ValueObjects;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Egeshka.Auth.Application.Services.TokenProviders;
 
@@ -12,7 +13,7 @@ public sealed class RefreshTokenProvider : IRefreshTokenProvider
         var key = Guid.NewGuid().ToByteArray();
 
         var bytes = user.Concat(time).Concat(key).ToArray();
-        var token = Convert.ToBase64String(bytes);
+        var token = Base64UrlEncoder.Encode(bytes);
 
         return token;
     }
