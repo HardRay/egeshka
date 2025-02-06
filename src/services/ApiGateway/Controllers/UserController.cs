@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Egeshka.ApiGateway.Controllers;
 
-[ApiController]
 [Route("/api/user")]
-public class UserController(IAuthProvider authProvider) : ControllerBaseWithIdentity
+public sealed class UserController(IAuthProvider authProvider) : ControllerBaseWithIdentity
 {
     [HttpPost("login")]
     [AllowAnonymous]

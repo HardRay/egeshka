@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 namespace Egeshka.ApiGateway.Controllers;
 
 [Authorize]
+[ApiController]
 public abstract class ControllerBaseWithIdentity : ControllerBase
 {
     protected long GetUserIdOrThrow()
