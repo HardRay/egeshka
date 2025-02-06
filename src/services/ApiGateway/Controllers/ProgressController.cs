@@ -7,11 +7,14 @@ namespace Egeshka.ApiGateway.Controllers;
 [Route("/api/progress")]
 public sealed class ProgressController : ControllerBaseWithIdentity
 {
+    /// <summary>
+    /// Получение своих пройденных заданий
+    /// </summary>
     [HttpGet("exercises/my")]
     [ProducesDefaultResponseType]
     [ProducesResponseType<GetMyCompletedExercisesResponse>(StatusCodes.Status200OK)]
     public Task<GetMyCompletedExercisesResponse> GetMyCompletedExercises(
-        [FromQuery]GetMyCompletedExercisesRequest request,
+        [FromQuery] GetMyCompletedExercisesRequest request,
         CancellationToken cancellationToken)
     {
         var response = new GetMyCompletedExercisesResponse()
@@ -22,6 +25,9 @@ public sealed class ProgressController : ControllerBaseWithIdentity
         return Task.FromResult(response);
     }
 
+    /// <summary>
+    /// Получение своих ударных режимов
+    /// </summary>
     [HttpGet("streak/my")]
     [ProducesDefaultResponseType]
     [ProducesResponseType<GetMyStreaksResponse>(StatusCodes.Status200OK)]

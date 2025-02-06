@@ -1,4 +1,6 @@
-﻿namespace Egeshka.ApiGateway.Dtos.Progress.GetMyStreak;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Egeshka.ApiGateway.Dtos.Progress.GetMyStreak;
 
 /// <summary>
 /// Интервал ударного режима
@@ -18,5 +20,6 @@ public sealed class Streak
     /// <summary>
     /// Даты использования заморозки
     /// </summary>
+    [Required]
     public IReadOnlyCollection<DateOnly> FreezeDates { get; init; } = [];
 }

@@ -9,6 +9,7 @@
     <DockerfileContext>..\..</DockerfileContext>
     <RootNamespace>Egeshka.ApiGateway</RootNamespace>
     <AssemblyName>Egeshka.ApiGateway</AssemblyName>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

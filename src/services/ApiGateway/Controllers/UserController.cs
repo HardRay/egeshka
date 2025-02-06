@@ -10,6 +10,9 @@ namespace Egeshka.ApiGateway.Controllers;
 [Route("/api/user")]
 public sealed class UserController(IAuthProvider authProvider) : ControllerBaseWithIdentity
 {
+    /// <summary>
+    /// Получение токена доступа
+    /// </summary>
     [HttpPost("login")]
     [AllowAnonymous]
     [ProducesDefaultResponseType]
@@ -21,6 +24,9 @@ public sealed class UserController(IAuthProvider authProvider) : ControllerBaseW
         return authProvider.LoginAsync(request, cancellationToken);
     }
 
+    /// <summary>
+    /// Обновление токена доступа
+    /// </summary>
     [HttpPost("relogin")]
     [AllowAnonymous]
     [ProducesDefaultResponseType]
@@ -32,6 +38,9 @@ public sealed class UserController(IAuthProvider authProvider) : ControllerBaseW
         return authProvider.ReloginAsync(request, cancellationToken);
     }
 
+    /// <summary>
+    /// Получение своего Id
+    /// </summary>
     [HttpGet("id")]
     public Task<long> GetMyId()
     {

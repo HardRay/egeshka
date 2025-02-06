@@ -116,6 +116,8 @@ public static class ServiceCollectionExtensions
             {
                 { jwtSecurityScheme, Array.Empty<string>() }
             });
+
+            setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Egeshka.ApiGateway.xml"));
         });
 
         return services;
