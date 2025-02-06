@@ -8,15 +8,15 @@ public sealed class Streak
     /// <summary>
     /// Начало интервала
     /// </summary>
-    public DateTimeOffset DateFrom { get; init; }
+    public DateOnly DateFrom { get; init; }
 
     /// <summary>
     /// Конец интервала
     /// </summary>
-    public DateTimeOffset DateTo { get; init; }
+    public DateOnly DateTo { get; init; }
 
     /// <summary>
     /// Даты использования заморозки
     /// </summary>
-    public IReadOnlyCollection<DateTimeOffset> FreezeDates { get; init; } = [];
+    public IReadOnlyCollection<DateOnly> FreezeDates { get; init; } = [];
 }

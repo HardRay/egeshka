@@ -33,21 +33,21 @@ public sealed class ProgressController : ControllerBaseWithIdentity
             [
                 new()
                 {
-                    DateFrom = new DateTimeOffset(new DateTime(2025, 1, 1)),
-                    DateTo = new DateTimeOffset(new DateTime(2025, 1, 5)),
+                    DateFrom = new DateOnly(2025, 1, 1),
+                    DateTo = new DateOnly(2025, 1, 5),
                     FreezeDates =
                     [
-                        new DateTimeOffset(new DateTime(2025, 1, 2)),
-                        new DateTimeOffset(new DateTime(2025, 1, 3))
+                        new DateOnly(2025, 1, 2),
+                        new DateOnly(2025, 1, 3)
                     ]
                 },
                 new()
                 {
-                    DateFrom = new DateTimeOffset(new DateTime(2025, 1, 10)),
-                    DateTo = new DateTimeOffset(new DateTime(2025, 1, 12)),
+                    DateFrom = new DateOnly(2025, 1, 10),
+                    DateTo = new DateOnly(2025, 1, 12),
                     FreezeDates =
                     [
-                        new DateTimeOffset(new DateTime(2025, 1, 12))
+                        new DateOnly(2025, 1, 12)
                     ]
                 }
             ]
