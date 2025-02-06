@@ -20,7 +20,7 @@ public static partial class ServiceCollectionExtensions
     {
         collection
             .AddDataAccess(configuration)
-            .AddApplication();
+            .AddApplication(configuration);
 
         return collection;
     }

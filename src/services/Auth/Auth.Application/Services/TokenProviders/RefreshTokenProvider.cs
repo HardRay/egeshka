@@ -1,9 +1,9 @@
-﻿using Egeshka.Auth.Application.Services.TokenGenerators.Interfaces;
+﻿using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
 using Egeshka.Auth.Domain.ValueObjects;
 
-namespace Egeshka.Auth.Application.Services.TokenGenerators;
+namespace Egeshka.Auth.Application.Services.TokenProviders;
 
-public sealed class RefreshTokenGenerator : IRefreshTokenGenerator
+public sealed class RefreshTokenProvider : IRefreshTokenProvider
 {
     public string GenerateToken(UserId userId)
     {

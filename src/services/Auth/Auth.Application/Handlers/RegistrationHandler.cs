@@ -1,13 +1,13 @@
 ﻿using Egeshka.Auth.Application.Commands.Registration;
 using Egeshka.Auth.Application.Mappers;
 using Egeshka.Auth.Application.Repository;
-using Egeshka.Auth.Application.Services.TokenGenerators.Interfaces;
+using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
 using MediatR;
 
 namespace Egeshka.Auth.Application.Handlers;
 
 public sealed class RegistrationHandler(
-    IRegistrationTokenGenerator tokenGenerator,
+    IRegistrationTokenProvider tokenGenerator,
     IRegistrationRepository repository)
     : IRequestHandler<RegistrationCommand, RegistrationResult>
 {

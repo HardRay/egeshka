@@ -36,10 +36,10 @@ public static partial class ServiceCollectionExtensions
             throw new ArgumentException("Требуется указать строку подключения к БД или она пустая");
         }
 
-        var password = configuration.GetValue<string>("AuthDatabasePassword");
+        var password = configuration.GetValue<string>("AuthDatabase:Password");
         if (string.IsNullOrEmpty(password))
         {
-            throw new ArgumentException("Требуется добавить пароль к БД в переменную окружения AuthDatabasePassword");
+            throw new ArgumentException("Требуется добавить пароль к БД в переменную окружения AuthDatabase__Password");
         }
 
         var builder = new NpgsqlConnectionStringBuilder(baseConnectionString)

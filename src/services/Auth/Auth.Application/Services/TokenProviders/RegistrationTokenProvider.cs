@@ -1,8 +1,8 @@
-﻿using Egeshka.Auth.Application.Services.TokenGenerators.Interfaces;
+﻿using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
 
-namespace Egeshka.Auth.Application.Services.TokenGenerators;
+namespace Egeshka.Auth.Application.Services.TokenProviders;
 
-public sealed class RegistrationTokenGenerator : IRegistrationTokenGenerator
+public sealed class RegistrationTokenProvider : IRegistrationTokenProvider
 {
     public string GenerateToken()
     {

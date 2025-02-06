@@ -18,6 +18,7 @@ public sealed class Program
                         {
                             option.ListenPortByOptions(GRPC_PORT, HttpProtocols.Http2);
                         }))
+            .ConfigureAppConfiguration(builder => builder.AddEnvironmentVariables())
             .Build()
             .RunOrMigrateAsync(args);
     }
