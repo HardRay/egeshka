@@ -6,8 +6,8 @@ EXPOSE 8081
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["protos/Proto.Auth", "src/protos/Proto.Auth/"]
-COPY ["protos/Proto.Core", "src/protos/Proto.Core/"]
+COPY ["libraries/Core.Proto", "src/libraries/Core.Proto/"]
+COPY ["protos/auth/auth.proto", "src/protos/auth/auth.proto/"]
 COPY ["services/AuthBot", "src/services/AuthBot/"]
 
 RUN dotnet restore "src/services/AuthBot/AuthBot.csproj"

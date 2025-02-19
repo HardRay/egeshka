@@ -7,8 +7,8 @@ FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
-COPY ["protos/Proto.Auth", "src/protos/Proto.Auth/"]
-COPY ["protos/Proto.Core", "src/protos/Proto.Core/"]
+COPY ["libraries/Core.Proto", "src/libraries/Core.Proto/"]
+COPY ["protos/auth/auth.proto", "src/protos/auth/auth.proto/"]
 COPY ["services/ApiGateway", "src/services/ApiGateway/"]
 
 RUN dotnet restore "src/services/ApiGateway/ApiGateway.csproj"

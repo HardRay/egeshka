@@ -11,5 +11,5 @@ public sealed class EntityNotFoundException(string message = "Сущность �
 
     public override HttpStatusCode HttpStatusCode => HttpStatusCode.NotFound;
 
-    public override StatusCode GrpcStatusCode =>StatusCode.NotFound;
+    public override StatusCode GrpcStatusCode => StatusCode.NotFound;
 }

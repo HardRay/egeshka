@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\..\protos\Proto.Auth\auth.proto" GrpcServices="Server" />
+    <Protobuf Include="..\..\..\protos\auth\auth.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

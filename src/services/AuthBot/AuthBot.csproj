@@ -21,11 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\protos\Proto.Auth\Proto.Auth.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Protobuf Include="..\..\protos\Proto.Auth\auth.proto" GrpcServices="Client" />
+    <Protobuf Include="..\..\protos\auth\auth.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>
