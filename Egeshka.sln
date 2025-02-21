@@ -50,6 +50,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{D83141
 		src\protos\common\GrpcErrorModel.proto = src\protos\common\GrpcErrorModel.proto
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progress.Application", "src\services\Progress\Progress.Application\Progress.Application.csproj", "{252E2EC1-C798-48B4-A1FB-C3DFAC055006}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progress.Hosting", "src\services\Progress\Progress.Hosting\Progress.Hosting.csproj", "{72E599CE-6410-4F9F-AF8A-B072576CB045}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progress.Domain", "src\services\Progress\Progress.Domain\Progress.Domain.csproj", "{992DB161-F860-458A-8933-D4C705422D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progress.Infrastructure", "src\services\Progress\Progress.Infrastructure\Progress.Infrastructure.csproj", "{BD6FDE2B-B437-489E-BFD7-5C1A9BEC18F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain", "src\libraries\Core.Domain\Core.Domain.csproj", "{A2088396-E447-4E84-AF3D-3EC699A6F586}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +102,26 @@ Global
 		{43C35458-99BF-4826-B09A-B05CD01A0DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43C35458-99BF-4826-B09A-B05CD01A0DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43C35458-99BF-4826-B09A-B05CD01A0DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252E2EC1-C798-48B4-A1FB-C3DFAC055006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252E2EC1-C798-48B4-A1FB-C3DFAC055006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252E2EC1-C798-48B4-A1FB-C3DFAC055006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252E2EC1-C798-48B4-A1FB-C3DFAC055006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E599CE-6410-4F9F-AF8A-B072576CB045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E599CE-6410-4F9F-AF8A-B072576CB045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E599CE-6410-4F9F-AF8A-B072576CB045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E599CE-6410-4F9F-AF8A-B072576CB045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{992DB161-F860-458A-8933-D4C705422D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{992DB161-F860-458A-8933-D4C705422D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{992DB161-F860-458A-8933-D4C705422D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{992DB161-F860-458A-8933-D4C705422D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6FDE2B-B437-489E-BFD7-5C1A9BEC18F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6FDE2B-B437-489E-BFD7-5C1A9BEC18F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6FDE2B-B437-489E-BFD7-5C1A9BEC18F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6FDE2B-B437-489E-BFD7-5C1A9BEC18F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2088396-E447-4E84-AF3D-3EC699A6F586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2088396-E447-4E84-AF3D-3EC699A6F586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2088396-E447-4E84-AF3D-3EC699A6F586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2088396-E447-4E84-AF3D-3EC699A6F586}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +143,11 @@ Global
 		{43C35458-99BF-4826-B09A-B05CD01A0DF3} = {0B95036D-7B3D-44DC-8FEB-C170F178D56C}
 		{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8} = {76AC8A98-A2F6-4FF5-B7E2-C43BD9EA082F}
 		{D83141E3-FDBC-476D-8D3F-42D75449F353} = {76AC8A98-A2F6-4FF5-B7E2-C43BD9EA082F}
+		{252E2EC1-C798-48B4-A1FB-C3DFAC055006} = {BCCDF8C0-2B1A-4C24-BAE3-1BAD0E1445A9}
+		{72E599CE-6410-4F9F-AF8A-B072576CB045} = {BCCDF8C0-2B1A-4C24-BAE3-1BAD0E1445A9}
+		{992DB161-F860-458A-8933-D4C705422D07} = {BCCDF8C0-2B1A-4C24-BAE3-1BAD0E1445A9}
+		{BD6FDE2B-B437-489E-BFD7-5C1A9BEC18F5} = {BCCDF8C0-2B1A-4C24-BAE3-1BAD0E1445A9}
+		{A2088396-E447-4E84-AF3D-3EC699A6F586} = {0B95036D-7B3D-44DC-8FEB-C170F178D56C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {587C15A5-FA09-4451-B868-3C5E8B709D7A}

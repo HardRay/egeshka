@@ -1,4 +1,4 @@
-﻿namespace Egeshka.Auth.Domain.Exceptions;
+﻿namespace Egeshka.Core.Domain.Exceptions;
 
 public class DomainException(int code, string message) : ApplicationException(message)
 {

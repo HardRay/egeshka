@@ -1,7 +1,7 @@
-﻿using Egeshka.Auth.Domain.Exceptions;
+﻿using Egeshka.Core.Domain.Exceptions;
 using System.Text.RegularExpressions;
 
-namespace Egeshka.Auth.Domain.ValueObjects;
+namespace Egeshka.Core.Domain.ValueObjects;
 
 public sealed partial class MobileNumber
 {

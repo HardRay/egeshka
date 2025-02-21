@@ -1,4 +1,4 @@
-﻿namespace Egeshka.Auth.Domain.ValueObjects;
+﻿namespace Egeshka.Core.Domain.ValueObjects;
 
 public readonly record struct TelegramUserId(long Value)
 {

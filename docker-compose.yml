@@ -9,8 +9,6 @@ services:
     depends_on:
       - auth-service-db
     container_name: auth-service
-    ports:
-      - "5201:8080"
     environment:
       - GRPC_PORT=8080
       - AuthDatabase__Password=${AuthDatabase__Password}
@@ -26,7 +24,31 @@ services:
     ports:
       - "5400:5432"
     volumes:
-      - auth-service-db:/var/lib/postgresql/data
+      - auth-service-db:/var/lib/postgresql/data 
+
+  progress-service:
+    build:
+      context: ./src
+      dockerfile: services/Progress/Progress.Hosting/Dockerfile
+    depends_on:
+      - progress-service-db
+    container_name: progress-service
+    environment:
+      - GRPC_PORT=8080
+      - AuthDatabase__Password=${AuthDatabase__Password}
+      - AccessTokenOptions__SecretKey=${AccessTokenOptions__SecretKey}
+
+  progress-service-db:
+    image: postgres:latest
+    container_name: progress-service-db
+    environment:
+      - POSTGRES_DB=progress-service
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${ProgressDatabasePassword} 
+    ports:
+      - "5401:5432"
+    volumes:
+      - progress-service-db:/var/lib/postgresql/data 
 
   api-gateway:
     build:
@@ -48,9 +70,9 @@ services:
     environment:
       - BOT_TOKEN=${BotApiToken}
       - AUTH_ADDRESS=http://auth-service:8080
-    ports:
-      - "5203:8080"
 
 volumes:
   auth-service-db:
     name: auth-service-db
+  progress-service-db:
+    name: progress-service-db
