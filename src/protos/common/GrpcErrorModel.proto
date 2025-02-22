@@ -1,6 +1,8 @@
 syntax = "proto3";
 option csharp_namespace = "Egeshka.Grpc.Common";
 
+package egeshka.proto.common;
+
 message GrpcErrorModel {
     string error_code = 1;
     repeated string messages = 2;

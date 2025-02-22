@@ -1,7 +1,7 @@
 ﻿using Egeshka.Core.Domain.ValueObjects;
 using MediatR;
 
-namespace Egeshka.Progress.Application.Commands;
+namespace Egeshka.Progress.Application.Commands.SaveExerciseResult;
 
 public sealed record SaveExerciseResultCommand(
     UserId UserId,

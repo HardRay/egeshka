@@ -15,4 +15,12 @@ public sealed class ProgressGrpcService(IMediator mediator) : ProgressGrpc.Progr
 
         return new Empty();
     }
+
+    public override async Task<GetCompletedExercises.Types.Response> GetCompletedExercises(
+        GetCompletedExercises.Types.Request request, ServerCallContext context)
+    {
+        var result = await mediator.Send(request.ToServiceQuery(), cancellationToken: context.CancellationToken);
+
+        return result.ToProto();
+    }
 }

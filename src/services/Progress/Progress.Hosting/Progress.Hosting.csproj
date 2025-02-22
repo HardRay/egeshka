@@ -25,7 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\..\protos\progress\progress.proto" GrpcServices="Server" />
+    <Protobuf Include="..\..\..\protos\progress\*" GrpcServices="Server"
+              ProtoRoot="..\..\..\protos\"/>
+    <Protobuf Include="..\..\..\protos\common\date.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

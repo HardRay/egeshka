@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using Egeshka.Core.Application.Services.Interfaces;
+using Egeshka.Core.Domain.ValueObjects;
 using Egeshka.Progress.Application.Model.Repository;
 using Egeshka.Progress.Infrastructure.DataAccess.Repositories.Internal.Interfaces;
 using Npgsql;
+using System.Text;
 
 namespace Egeshka.Progress.Infrastructure.DataAccess.Repositories.Internal;
 
@@ -38,5 +40,33 @@ public sealed class ExerciseResultInternalRepository(
             cancellationToken: cancellationToken);
 
         return connection.ExecuteAsync(cmd);
+    }
+
+    public async Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercises(
+        NpgsqlConnection connection,
+        UserId userId,
+        SubjectId subjectId,
+        CancellationToken cancellationToken)
+    {
+        const string Sql =
+            $"""
+                select exercise_id
+                from {TableName}
+                where user_id = @UserId and subject_id = @SubjectId
+            """;
+
+        var cmd = new CommandDefinition(
+            Sql,
+            new
+            { 
+                UserId = userId.Value,
+                SubjectId = subjectId.Value
+            },
+            cancellationToken: cancellationToken);
+
+        var exerciseIds = await connection.QueryAsync<long>(cmd);
+        var result = exerciseIds.Select(id => new ExerciseId(id)).ToArray();
+
+        return result;
     }
 }

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "Egeshka.Progress.Grpc";
+
+package egeshka.proto.progress;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "common/date.proto";
+
+service StreakGrpc {
+  rpc SaveExerciseResult(GetUserStreak.Request) returns(GetUserStreak.Response);
+}
+
+message GetUserStreak
+{
+  message Request {
+    int64 user_id = 1;
+  }
+
+  message Response {
+    int32 current_streak = 1;
+    repeated StreakItem items = 2;
+  }
+
+  message StreakItem {
+    common.Date date = 1;
+    StreakItemType Type = 2;
+  }
+}
+
+enum StreakItemType {
+  PROGRESS = 0;
+  FREEZE = 1;
+}

@@ -2,6 +2,6 @@
 
 public enum StreakItemType
 {
-    Progress = 1,
-    Freeze = 2
+    Progress = 0,
+    Freeze = 1
 }

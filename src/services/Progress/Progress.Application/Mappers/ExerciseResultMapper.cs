@@ -1,4 +1,4 @@
-﻿using Egeshka.Progress.Application.Commands;
+﻿using Egeshka.Progress.Application.Commands.SaveExerciseResult;
 using Egeshka.Progress.Application.Model.Repository;
 
 namespace Egeshka.Progress.Application.Mappers;

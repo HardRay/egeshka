@@ -2,7 +2,7 @@
 using Egeshka.Progress.Application.Repositories;
 using MediatR;
 
-namespace Egeshka.Progress.Application.Commands;
+namespace Egeshka.Progress.Application.Commands.SaveExerciseResult;
 
 public sealed class SaveExerciseResultCommandHandler(
     IExerciseResultRepository repository)

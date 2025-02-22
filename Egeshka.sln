@@ -47,6 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "auth", "auth", "{36D591C7-6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{D83141E3-FDBC-476D-8D3F-42D75449F353}"
 	ProjectSection(SolutionItems) = preProject
+		src\protos\common\date.proto = src\protos\common\date.proto
 		src\protos\common\GrpcErrorModel.proto = src\protos\common\GrpcErrorModel.proto
 	EndProjectSection
 EndProject
@@ -63,6 +64,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "progress", "progress", "{9DF88A0C-AB06-4E79-9760-7001F2EE69A8}"
 	ProjectSection(SolutionItems) = preProject
 		src\protos\progress\progress.proto = src\protos\progress\progress.proto
+		src\protos\progress\streak.proto = src\protos\progress\streak.proto
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Application", "src\libraries\Core.Application\Core.Application.csproj", "{29DE02F8-0797-4285-9D69-18C297BE5C28}"

@@ -1,6 +1,8 @@
 syntax = "proto3";
 option csharp_namespace = "Egeshka.Auth.Grpc";
 
+package egeshka.proto.auth;
+
 import "google/protobuf/wrappers.proto";
 
 service AuthGrpc {

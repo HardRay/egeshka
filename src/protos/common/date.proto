@@ -1,0 +1,10 @@
+syntax = "proto3";
+option csharp_namespace = "Egeshka.Grpc.Common";
+
+package egeshka.proto.common;
+
+message Date {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
