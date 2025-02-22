@@ -1,9 +1,8 @@
 ﻿using Egeshka.Core.Domain.ValueObjects;
 
-namespace Egeshka.Progress.Domain.Entities;
+namespace Egeshka.Progress.Application.Model.Repository;
 
-public sealed record ExerciseResult(
-    ExerciseResultId Id,
+public sealed record ExerciseResultInsertModel(
     UserId UserId,
     SubjectId SubjectId,
     ExerciseId ExerciseId,

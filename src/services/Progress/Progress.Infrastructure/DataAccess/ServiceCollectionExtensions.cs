@@ -1,5 +1,6 @@
 ﻿using Egeshka.Progress.Infrastructure.DataAccess.Migrations.Common;
 using Egeshka.Progress.Infrastructure.DataAccess.Repositories;
+using Egeshka.Progress.Infrastructure.DataAccess.TypeHandlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
@@ -25,6 +26,8 @@ public static partial class ServiceCollectionExtensions
             .AddFluentMigrator(connectionString)
             .AddRepositories(connectionString);
 
+        AddTypeHandlers();
+
         return collection;
     }
 
@@ -48,5 +51,10 @@ public static partial class ServiceCollectionExtensions
         };
 
         return builder.ConnectionString;
+    }
+
+    private static void AddTypeHandlers()
+    {
+        Dapper.SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
     }
 }

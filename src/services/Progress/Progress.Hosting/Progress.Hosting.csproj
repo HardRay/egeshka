@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Progress.Infrastructure\Progress.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Protobuf Include="..\..\..\protos\progress\progress.proto" GrpcServices="Server" />
+  </ItemGroup>
+
 </Project>

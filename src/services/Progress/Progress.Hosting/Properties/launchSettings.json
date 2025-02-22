@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "http": {
+    "hosting": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

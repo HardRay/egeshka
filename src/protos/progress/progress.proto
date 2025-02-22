@@ -1,0 +1,21 @@
+syntax = "proto3";
+option csharp_namespace = "Egeshka.Progress.Grpc";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service ProgressGrpc {
+  rpc SaveExerciseResult(SaveExerciseResult.Request) returns(google.protobuf.Empty);
+}
+
+message SaveExerciseResult
+{
+  message Request {
+    int64 user_id = 1;
+    int64 subject_id = 2;
+    int64 exercise_id = 3;
+    int32 experience_points = 4;
+    google.protobuf.Timestamp date = 5;
+    repeated int64 error_task_ids = 6;
+  }
+}
