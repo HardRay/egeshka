@@ -1,7 +1,7 @@
 ﻿using Egeshka.Auth.Application.Models;
 using Egeshka.Auth.Application.Services.Interfaces;
 using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
-using Egeshka.Auth.Domain.ValueObjects;
+using Egeshka.Core.Domain.ValueObjects;
 
 namespace Egeshka.Auth.Application.Services;
 

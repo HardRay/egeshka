@@ -1,10 +1,10 @@
 ﻿using Egeshka.Auth.Application.Models.Repository;
 using Egeshka.Auth.Application.Repository;
 using Egeshka.Auth.Domain.Entities;
-using Egeshka.Auth.Domain.ValueObjects;
 using Egeshka.Auth.Infrastructure.DataAccess.Mappers;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Common;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Internal.Interfaces;
+using Egeshka.Core.Domain.ValueObjects;
 using Egeshka.Core.Models.Exceptions;
 
 namespace Egeshka.Auth.Infrastructure.DataAccess.Repositories;

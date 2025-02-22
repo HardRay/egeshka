@@ -1,5 +1,5 @@
 ﻿using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
-using Egeshka.Auth.Domain.ValueObjects;
+using Egeshka.Core.Domain.ValueObjects;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Egeshka.Auth.Application.Services.TokenProviders;

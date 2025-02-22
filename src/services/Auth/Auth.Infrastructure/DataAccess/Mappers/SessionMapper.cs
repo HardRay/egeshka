@@ -1,6 +1,6 @@
 ﻿using Egeshka.Auth.Domain.Entities;
-using Egeshka.Auth.Domain.ValueObjects;
 using Egeshka.Auth.Infrastructure.DataAccess.DbModels;
+using Egeshka.Core.Domain.ValueObjects;
 
 namespace Egeshka.Auth.Infrastructure.DataAccess.Mappers;
 

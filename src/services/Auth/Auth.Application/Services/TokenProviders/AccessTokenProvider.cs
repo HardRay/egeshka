@@ -1,7 +1,7 @@
 ﻿using Egeshka.Auth.Application.Options;
 using Egeshka.Auth.Application.Services.Interfaces;
 using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
-using Egeshka.Auth.Domain.ValueObjects;
+using Egeshka.Core.Domain.ValueObjects;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;

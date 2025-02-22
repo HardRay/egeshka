@@ -1,4 +1,4 @@
-﻿using Egeshka.Auth.Domain.ValueObjects;
+﻿using Egeshka.Core.Domain.ValueObjects;
 using MediatR;
 
 namespace Egeshka.Auth.Application.Commands.Registration;

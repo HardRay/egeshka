@@ -1,4 +1,4 @@
-﻿using Egeshka.Auth.Domain.ValueObjects;
+﻿using Egeshka.Core.Domain.ValueObjects;
 
 namespace Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
 
