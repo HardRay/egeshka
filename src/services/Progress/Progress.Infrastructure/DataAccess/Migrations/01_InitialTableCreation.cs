@@ -18,6 +18,7 @@ public sealed class InitialTableCreation : SqlMigration
                 exercise_id bigint not null,
                 error_task_ids bigint[] not null,
                 experience_points int not null,
+                done_date timestamp without time zone not null,
         	    create_at timestamp with time zone not null
             );
 

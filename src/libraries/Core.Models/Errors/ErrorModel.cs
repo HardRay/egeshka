@@ -19,6 +19,16 @@ public sealed class ErrorModel
         };
     }
 
+    public static ErrorModel Create(string errorCode, HttpStatusCode httpStatusCode, IReadOnlyCollection<string> errorMessages)
+    {
+        return new ErrorModel()
+        {
+            ErrorCode = errorCode,
+            HttpStatusCode = httpStatusCode,
+            ErrorMessages = errorMessages
+        };
+    }
+
     public static ErrorModel GetUnknownError()
     {
         return new ErrorModel()

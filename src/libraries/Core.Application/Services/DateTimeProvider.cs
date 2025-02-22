@@ -1,6 +1,6 @@
-﻿using Egeshka.Auth.Application.Services.Interfaces;
+﻿using Egeshka.Core.Application.Services.Interfaces;
 
-namespace Egeshka.Auth.Application.Services;
+namespace Egeshka.Core.Application.Services;
 
 public sealed class DateTimeProvider : IDateTimeProvider
 {

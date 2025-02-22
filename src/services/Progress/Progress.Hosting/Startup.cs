@@ -1,25 +1,34 @@
-﻿using Egeshka.Core.Hosting.Interceptors;
+﻿using Egeshka.Core.Hosting.Extensions;
+using Egeshka.Core.Hosting.Interceptors;
+using Egeshka.Progress.Grpc;
 using Egeshka.Progress.Hosting.GrpcServices;
+using Egeshka.Progress.Hosting.Validators;
 using Egeshka.Progress.Infrastructure;
+using FluentValidation;
 
 namespace Egeshka.Progress.Hosting;
 
 public sealed class Startup(IConfiguration configuration)
 {
-    public void ConfigureServices(IServiceCollection serviceCollection)
+    public void ConfigureServices(IServiceCollection services)
     {
-        serviceCollection
+        var assembly = typeof(Startup).Assembly;
+
+        services
             .AddInfrastructure(configuration);
 
-        serviceCollection.AddEndpointsApiExplorer();
-        serviceCollection.AddSwaggerGen();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
 
-        serviceCollection.AddGrpc(options =>
+        services.AddGrpc(options =>
         {
             options.Interceptors.Add<ExceptionsHandlingInterceptor>();
+            options.Interceptors.Add<ValidationInterceptor>();
             options.EnableDetailedErrors = true;
         });
-        serviceCollection.AddGrpcReflection();
+        services.AddGrpcReflection();
+
+        services.AddValidatorsFromAssembly(assembly);
     }
 
     public void Configure(IApplicationBuilder applicationBuilder)

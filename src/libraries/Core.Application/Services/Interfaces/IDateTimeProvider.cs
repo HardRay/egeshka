@@ -1,4 +1,4 @@
-﻿namespace Egeshka.Auth.Application.Services.Interfaces;
+﻿namespace Egeshka.Core.Application.Services.Interfaces;
 
 public interface IDateTimeProvider
 {

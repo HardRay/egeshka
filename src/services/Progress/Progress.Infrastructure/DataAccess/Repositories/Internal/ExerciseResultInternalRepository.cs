@@ -1,11 +1,14 @@
 ﻿using Dapper;
+using Egeshka.Core.Application.Services.Interfaces;
 using Egeshka.Progress.Application.Model.Repository;
 using Egeshka.Progress.Infrastructure.DataAccess.Repositories.Internal.Interfaces;
 using Npgsql;
 
 namespace Egeshka.Progress.Infrastructure.DataAccess.Repositories.Internal;
 
-public sealed class ExerciseResultInternalRepository : IExerciseResultInternalRepository
+public sealed class ExerciseResultInternalRepository(
+    IDateTimeProvider dateTimeProvider)
+    : IExerciseResultInternalRepository
 {
     private const string TableName = "exercise_results";
 
@@ -16,8 +19,8 @@ public sealed class ExerciseResultInternalRepository : IExerciseResultInternalRe
     {
         const string Sql =
             $"""
-                insert into {TableName}(user_id, subject_id, exercise_id, error_task_ids, experience_points, create_at)
-                values (@UserId, @SubjectId, @ExerciseId, @ErrorTaskIds, @ExperiencePoints, @Date)
+                insert into {TableName}(user_id, subject_id, exercise_id, error_task_ids, experience_points, done_date, create_at)
+                values (@UserId, @SubjectId, @ExerciseId, @ErrorTaskIds, @ExperiencePoints, @Date, @CreateAt)
             """;
 
         var cmd = new CommandDefinition(
@@ -30,6 +33,7 @@ public sealed class ExerciseResultInternalRepository : IExerciseResultInternalRe
                 ErrorTaskIds = exerciseResult.ErrorTaskIds.Select(id => id.Value).ToArray(),
                 exerciseResult.ExperiencePoints,
                 exerciseResult.Date,
+                CreateAt = dateTimeProvider.UtcNow
             },
             cancellationToken: cancellationToken);
 

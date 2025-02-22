@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using Egeshka.Auth.Application.Models.Repository;
-using Egeshka.Auth.Application.Services.Interfaces;
 using Egeshka.Auth.Infrastructure.DataAccess.DbModels;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Internal.Interfaces;
+using Egeshka.Core.Application.Services.Interfaces;
 using Npgsql;
 using System.Text;
 

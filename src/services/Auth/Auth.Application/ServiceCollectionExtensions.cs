@@ -3,6 +3,7 @@ using Egeshka.Auth.Application.Services;
 using Egeshka.Auth.Application.Services.Interfaces;
 using Egeshka.Auth.Application.Services.TokenProviders;
 using Egeshka.Auth.Application.Services.TokenProviders.Interfaces;
+using Egeshka.Core.Application.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -21,10 +22,11 @@ public static partial class ServiceCollectionExtensions
     {
         collection.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+        collection.AddCoreServices();
+
         collection.AddTransient<IRegistrationTokenProvider, RegistrationTokenProvider>();
         collection.AddTransient<IAccessTokenProvider, AccessTokenProvider>();
         collection.AddTransient<IRefreshTokenProvider, RefreshTokenProvider>();
-        collection.AddTransient<IDateTimeProvider, DateTimeProvider>();
         collection.AddTransient<IAuthorizationService, AuthorizationService>();
 
         collection.AddOptions<AccessTokenOptions>().Bind(configuration.GetSection(nameof(AccessTokenOptions)));

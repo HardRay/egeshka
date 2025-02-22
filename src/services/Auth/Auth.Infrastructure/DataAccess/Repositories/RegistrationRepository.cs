@@ -8,6 +8,7 @@ using Egeshka.Auth.Infrastructure.DataAccess.DbModels;
 using Egeshka.Auth.Infrastructure.DataAccess.Mappers;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Common;
 using Egeshka.Auth.Infrastructure.DataAccess.Repositories.Internal.Interfaces;
+using Egeshka.Core.Application.Services.Interfaces;
 
 namespace Egeshka.Auth.Infrastructure.DataAccess.Repositories;
 

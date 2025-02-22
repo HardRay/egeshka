@@ -7,8 +7,9 @@ FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY ["libraries/Core.Domain", "src/libraries/Core.Domain/"]
-COPY ["libraries/Core.Hosting", "src/libraries/Core.Hosting/"]
 COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
+COPY ["libraries/Core.Application", "src/libraries/Core.Domain/"]
+COPY ["libraries/Core.Hosting", "src/libraries/Core.Hosting/"]
 COPY ["libraries/Core.Proto", "src/libraries/Core.Proto/"]
 COPY ["protos/auth/auth.proto", "src/protos/auth/auth.proto/"]
 COPY ["services/Auth/Auth", "src/services/Auth/Auth/"]

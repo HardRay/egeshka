@@ -2,9 +2,11 @@
 using Egeshka.Core.Models.Constants;
 using Egeshka.Core.Models.Errors;
 using Egeshka.Core.Models.Exceptions.Common;
+using FluentValidation;
 using Google.Protobuf;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
+using System.Net;
 
 namespace Egeshka.Core.Hosting.Interceptors;
 
@@ -29,6 +31,20 @@ public sealed class ExceptionsHandlingInterceptor : Interceptor
             };
 
             var status = new Status(ex.GrpcStatusCode, ex.Message, ex);
+            throw new RpcException(status, metadata);
+        }
+        catch (ValidationException ex)
+        {
+            const string errorMessage = "Validation error";
+
+            var errorMessages = ex.Errors.Select(x => $"{x.PropertyName}: {x.ErrorMessage}").ToArray();
+            var error = ErrorModel.Create(ErrorCodes.ValidationError, HttpStatusCode.BadRequest, errorMessages).ToProto();
+            var metadata = new Metadata
+            {
+                { Headers.ErrorDetails, error.ToByteString().ToBase64() }
+            };
+
+            var status = new Status(StatusCode.InvalidArgument, errorMessage, ex);
             throw new RpcException(status, metadata);
         }
         catch (Exception ex)
