@@ -35,7 +35,7 @@ services:
     container_name: progress-service
     environment:
       - GRPC_PORT=8080
-      - AuthDatabase__Password=${AuthDatabase__Password}
+      - ProgressDatabase__Password=${ProgressDatabase__Password}
       - AccessTokenOptions__SecretKey=${AccessTokenOptions__SecretKey}
 
   progress-service-db:

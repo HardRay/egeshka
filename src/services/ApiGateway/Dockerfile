@@ -6,11 +6,13 @@ EXPOSE 8081
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+COPY ["libraries/Core.Domain", "src/libraries/Core.Domain/"]
 COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
 
 COPY ["protos/Proto.Common", "src/protos/Proto.Common/"]
 COPY ["protos/Proto.Auth", "src/protos/Proto.Auth/"]
 COPY ["protos/Proto.Progress", "src/protos/Proto.Progress/"]
+COPY ["protos/Proto.Progress/Enums", "src/protos/Proto.Progress/Enums/"]
 
 COPY ["services/ApiGateway", "src/services/ApiGateway/"]
 

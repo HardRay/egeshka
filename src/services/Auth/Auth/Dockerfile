@@ -8,7 +8,7 @@ WORKDIR /src
 
 COPY ["libraries/Core.Domain", "src/libraries/Core.Domain/"]
 COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
-COPY ["libraries/Core.Application", "src/libraries/Core.Domain/"]
+COPY ["libraries/Core.Application", "src/libraries/Core.Application/"]
 COPY ["libraries/Core.Hosting", "src/libraries/Core.Hosting/"]
 
 COPY ["protos/Proto.Common", "src/protos/Proto.Common/"]

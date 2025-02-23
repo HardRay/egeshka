@@ -5,7 +5,7 @@ option csharp_namespace = "Egeshka.Grpc.Progress";
 package egeshka.proto.progress;
 
 import "Proto.Common/date.proto";
-import "Proto.Progress/enums/streak_item_type.proto";
+import "Proto.Progress/Enums/streak_item_type.proto";
 
 service StreakGrpc {
   rpc GetUserStreak(GetUserStreak.Request) returns(GetUserStreak.Response);

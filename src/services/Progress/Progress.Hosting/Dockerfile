@@ -8,7 +8,7 @@ WORKDIR /src
 
 COPY ["libraries/Core.Domain", "src/libraries/Core.Domain/"]
 COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
-COPY ["libraries/Core.Application", "src/libraries/Core.Domain/"]
+COPY ["libraries/Core.Application", "src/libraries/Core.Application/"]
 COPY ["libraries/Core.Hosting", "src/libraries/Core.Hosting/"]
 
 COPY ["protos/Proto.Common", "src/protos/Proto.Common/"]
@@ -20,11 +20,11 @@ COPY ["services/Progress/Progress.Application", "src/services/Progress/Progress.
 COPY ["services/Progress/Progress.Infrastructure", "src/services/Progress/Progress.Infrastructure/"]
 
 RUN dotnet restore "src/services/Progress/Progress.Hosting/Progress.Hosting.csproj"
-WORKDIR "src/services/Progress/Progress"
-RUN dotnet build "Progress.csproj" -c Release -o /app/build
+WORKDIR "src/services/Progress/Progress.Hosting"
+RUN dotnet build "Progress.Hosting.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Progress.csproj" -c Release -o /app/publish
+RUN dotnet publish "Progress.Hosting.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
