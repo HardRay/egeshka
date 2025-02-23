@@ -1,5 +1,5 @@
 ﻿using Egeshka.Progress.Infrastructure.DataAccess.Migrations.Common;
-using Egeshka.Progress.Infrastructure.DataAccess.Repositories;
+using Egeshka.Progress.Infrastructure.DataAccess.Repositories.Common;
 using Egeshka.Progress.Infrastructure.DataAccess.TypeHandlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

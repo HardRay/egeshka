@@ -7,7 +7,7 @@ public interface IExerciseResultRepository
 {
     Task InsertAsync(ExerciseResultInsertModel exerciseResult, CancellationToken cancellationToken);
 
-    Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercises(
+    Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercisesAsync(
         UserId userId,
         SubjectId subjectId,
         CancellationToken cancellationToken);

@@ -1,8 +1,8 @@
-﻿using Egeshka.Auth.Grpc;
-using Egeshka.AuthBot.BackgroundJobs;
+﻿using Egeshka.AuthBot.BackgroundJobs;
 using Egeshka.AuthBot.Providers;
 using Egeshka.AuthBot.Providers.Interfaces;
 using Egeshka.AuthBot.Services;
+using Egeshka.Grpc.Auth;
 
 namespace Egeshka.AuthBot;
 

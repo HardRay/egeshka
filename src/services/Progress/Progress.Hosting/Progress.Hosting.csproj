@@ -21,13 +21,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\libraries\Core.Hosting\Core.Hosting.csproj" />
+    <ProjectReference Include="..\..\..\protos\Proto.Progress\Proto.Progress.csproj" />
     <ProjectReference Include="..\Progress.Infrastructure\Progress.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\..\protos\progress\*" GrpcServices="Server"
-              ProtoRoot="..\..\..\protos\"/>
-    <Protobuf Include="..\..\..\protos\common\date.proto" GrpcServices="Server" />
+    <Protobuf Include="..\..\..\protos\Proto.Progress\*.proto" GrpcServices="Server" ProtoRoot="..\..\..\protos" />
   </ItemGroup>
 
 </Project>

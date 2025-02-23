@@ -1,7 +1,7 @@
-﻿using Egeshka.Core.Hosting.Mappers;
-using Egeshka.Core.Models.Constants;
+﻿using Egeshka.Core.Models.Constants;
 using Egeshka.Core.Models.Errors;
 using Egeshka.Core.Models.Exceptions.Common;
+using Egeshka.Proto.Common.Mappers;
 using FluentValidation;
 using Google.Protobuf;
 using Grpc.Core;

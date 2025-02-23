@@ -7,7 +7,10 @@ FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY ["libraries/Core.Proto", "src/libraries/Core.Proto/"]
-COPY ["protos/auth/auth.proto", "src/protos/auth/auth.proto/"]
+
+COPY ["protos/Proto.Common", "src/protos/Proto.Common/"]
+COPY ["protos/Proto.Auth", "src/protos/Proto.Auth/"]
+
 COPY ["services/AuthBot", "src/services/AuthBot/"]
 
 RUN dotnet restore "src/services/AuthBot/AuthBot.csproj"

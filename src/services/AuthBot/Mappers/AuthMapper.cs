@@ -1,6 +1,6 @@
 ﻿using Egeshka.Auth.Application.Models;
-using Egeshka.Auth.Grpc;
 using Egeshka.AuthBot.Models;
+using Egeshka.Grpc.Auth;
 using Telegram.Bot.Types;
 
 namespace Egeshka.AuthBot.Mappers;

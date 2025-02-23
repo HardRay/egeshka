@@ -1,10 +1,7 @@
 ﻿using Egeshka.Core.Hosting.Extensions;
 using Egeshka.Core.Hosting.Interceptors;
-using Egeshka.Progress.Grpc;
 using Egeshka.Progress.Hosting.GrpcServices;
-using Egeshka.Progress.Hosting.Validators;
 using Egeshka.Progress.Infrastructure;
-using FluentValidation;
 
 namespace Egeshka.Progress.Hosting;
 
@@ -42,6 +39,7 @@ public sealed class Startup(IConfiguration configuration)
             {
                 endpointRouteBuilder.MapGrpcReflectionService();
                 endpointRouteBuilder.MapGrpcService<ProgressGrpcService>();
+                endpointRouteBuilder.MapGrpcService<StreakGprcService>();
             });
     }
 }

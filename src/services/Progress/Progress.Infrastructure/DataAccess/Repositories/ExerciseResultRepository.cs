@@ -26,7 +26,7 @@ public sealed class ExerciseResultRepository(
         await transaction.CommitAsync(cancellationToken);
     }
 
-    public async Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercises(
+    public async Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercisesAsync(
         UserId userId,
         SubjectId subjectId,
         CancellationToken cancellationToken)
@@ -34,7 +34,7 @@ public sealed class ExerciseResultRepository(
         using var connection = connectionFactory.GetConnection();
         await connection.OpenAsync(cancellationToken);
 
-        var result = await exerciseResultInternalRepository.GetCompletedExercises(connection, userId, subjectId, cancellationToken);
+        var result = await exerciseResultInternalRepository.GetCompletedExercisesAsync(connection, userId, subjectId, cancellationToken);
         return result;
     }
 }

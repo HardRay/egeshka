@@ -1,8 +1,8 @@
 ﻿using Egeshka.Auth.Application.Models;
-using Egeshka.Auth.Grpc;
 using Egeshka.AuthBot.Mappers;
 using Egeshka.AuthBot.Models;
 using Egeshka.AuthBot.Providers.Interfaces;
+using Egeshka.Grpc.Auth;
 
 namespace Egeshka.AuthBot.Providers;
 

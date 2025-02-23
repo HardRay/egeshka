@@ -10,8 +10,10 @@ COPY ["libraries/Core.Domain", "src/libraries/Core.Domain/"]
 COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
 COPY ["libraries/Core.Application", "src/libraries/Core.Domain/"]
 COPY ["libraries/Core.Hosting", "src/libraries/Core.Hosting/"]
-COPY ["libraries/Core.Proto", "src/libraries/Core.Proto/"]
-COPY ["protos/progress/progress.proto", "src/protos/progress/progress.proto/"]
+
+COPY ["protos/Proto.Common", "src/protos/Proto.Common/"]
+COPY ["protos/Proto.Progress", "src/protos/Proto.Progress/"]
+
 COPY ["services/Progress/Progress.Hosting", "src/services/Progress/Progress.Hosting/"]
 COPY ["services/Progress/Progress.Domain", "src/services/Progress/Progress.Domain/"]
 COPY ["services/Progress/Progress.Application", "src/services/Progress/Progress.Application/"]

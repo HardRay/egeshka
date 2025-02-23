@@ -11,7 +11,7 @@ public interface IExerciseResultInternalRepository
         ExerciseResultInsertModel exerciseResult,
         CancellationToken cancellationToken);
 
-    Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercises(
+    Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercisesAsync(
         NpgsqlConnection connection,
         UserId userId,
         SubjectId subjectId,

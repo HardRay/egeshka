@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Progress.Application\Progress.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataAccess\DbModels\" />
-  </ItemGroup>
-
 </Project>

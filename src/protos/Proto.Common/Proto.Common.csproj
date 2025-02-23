@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>Egeshka.Core.Proto</AssemblyName>
-    <RootNamespace>Egeshka.Core.Proto</RootNamespace>
+    <AssemblyName>Egeshka.Proto.Common</AssemblyName>
+    <RootNamespace>Egeshka.Proto.Common</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\protos\Proto.Storage\Common\grpc_error_model.proto" GrpcServices="Client" />
-    <Protobuf Include="..\..\protos\Proto.Storage\Common\date.proto" GrpcServices="Client" />
+    <ProjectReference Include="..\..\libraries\Core.Models\Core.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="grpc_error_model.proto" GrpcServices="None" />
+    <Protobuf Include="date.proto" GrpcServices="None" />
   </ItemGroup>
 
 </Project>

@@ -42,7 +42,7 @@ public sealed class ExerciseResultInternalRepository(
         return connection.ExecuteAsync(cmd);
     }
 
-    public async Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercises(
+    public async Task<IReadOnlyCollection<ExerciseId>> GetCompletedExercisesAsync(
         NpgsqlConnection connection,
         UserId userId,
         SubjectId subjectId,

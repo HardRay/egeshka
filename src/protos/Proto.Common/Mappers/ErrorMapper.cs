@@ -3,7 +3,7 @@ using Egeshka.Core.Models.Exceptions.Common;
 using Egeshka.Grpc.Common;
 using System.Net;
 
-namespace Egeshka.Core.Hosting.Mappers;
+namespace Egeshka.Proto.Common.Mappers;
 
 public static class ErrorMapper
 {

@@ -1,5 +1,5 @@
-﻿using Egeshka.Auth.Grpc;
-using Egeshka.Auth.Mappers;
+﻿using Egeshka.Auth.Mappers;
+using Egeshka.Grpc.Auth;
 using Grpc.Core;
 using MediatR;
 

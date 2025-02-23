@@ -9,7 +9,7 @@ public sealed class GetCompletedExercisesQueryHandler(
 {
     public async Task<GetCompletedExercisesResult> Handle(GetCompletedExercisesQuery request, CancellationToken cancellationToken)
     {
-        var result = await repository.GetCompletedExercises(request.UserId, request.SubjectId, cancellationToken);
+        var result = await repository.GetCompletedExercisesAsync(request.UserId, request.SubjectId, cancellationToken);
 
         return new GetCompletedExercisesResult(result);
     }

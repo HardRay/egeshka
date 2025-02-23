@@ -1,8 +1,8 @@
 ﻿using Egeshka.Auth.Application.Commands.Login;
 using Egeshka.Auth.Application.Commands.Registration;
 using Egeshka.Auth.Application.Commands.Relogin;
-using Egeshka.Auth.Grpc;
 using Egeshka.Core.Domain.ValueObjects;
+using Egeshka.Grpc.Auth;
 
 namespace Egeshka.Auth.Mappers;
 

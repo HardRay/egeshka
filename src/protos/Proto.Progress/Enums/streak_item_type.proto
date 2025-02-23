@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Egeshka.Grpc.Progress.Enums";
+
+package egeshka.proto.progress.enums;
+
+enum StreakItemType {
+  PROGRESS = 0;
+  FREEZE = 1;
+}

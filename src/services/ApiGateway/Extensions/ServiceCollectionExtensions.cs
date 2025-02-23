@@ -2,7 +2,7 @@
 using Egeshka.ApiGateway.Options;
 using Egeshka.ApiGateway.Providers;
 using Egeshka.ApiGateway.Providers.Interfaces;
-using Egeshka.Auth.Grpc;
+using Egeshka.Grpc.Auth;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;

@@ -1,7 +1,7 @@
 ﻿using Egeshka.Core.Domain.ValueObjects;
 using Egeshka.Progress.Application.Commands.SaveExerciseResult;
 using Egeshka.Progress.Application.Queries.GetCompletedExercises;
-using Egeshka.Progress.Grpc;
+using Egeshka.Grpc.Progress;
 
 namespace Egeshka.Progress.Hosting.Mappers;
 

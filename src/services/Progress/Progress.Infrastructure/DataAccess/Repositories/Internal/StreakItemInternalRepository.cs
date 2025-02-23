@@ -1,5 +1,9 @@
 ﻿using Dapper;
+using Egeshka.Core.Domain.ValueObjects;
 using Egeshka.Progress.Application.Model.Repository;
+using Egeshka.Progress.Domain.Entities;
+using Egeshka.Progress.Infrastructure.DataAccess.DbModels;
+using Egeshka.Progress.Infrastructure.DataAccess.Mappers;
 using Egeshka.Progress.Infrastructure.DataAccess.Repositories.Internal.Interfaces;
 using Npgsql;
 
@@ -27,10 +31,34 @@ public sealed class StreakItemInternalRepository : IStreakItemInternalRepository
             {
                 UserId = streakItem.UserId.Value,
                 streakItem.Date,
-                Type = streakItem.Type
+                streakItem.Type
             },
             cancellationToken: cancellationToken);
 
         return connection.ExecuteAsync(cmd);
+    }
+
+    public async Task<IReadOnlyCollection<StreakItem>> GetUserStreakItemsAsync(
+        NpgsqlConnection connection,
+        UserId userId,
+        CancellationToken cancellationToken)
+    {
+        const string Sql =
+            $"""
+                select user_id, date, type
+                from {TableName}
+                where user_id = @UserId
+                order by date desc;
+            """;
+
+        var cmd = new CommandDefinition(
+            Sql,
+            new { UserId = userId.Value },
+            cancellationToken: cancellationToken);
+
+        var items = await connection.QueryAsync<StreakItemDbModel>(cmd);
+        var result = items.Select(item => item.ToServiceModel()).ToArray();
+
+        return result;
     }
 }

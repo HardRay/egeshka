@@ -24,10 +24,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\libraries\Core.Models\Core.Models.csproj" />
+    <ProjectReference Include="..\..\protos\Proto.Auth\Proto.Auth.csproj" />
+    <ProjectReference Include="..\..\protos\Proto.Common\Proto.Common.csproj" />
+    <ProjectReference Include="..\..\protos\Proto.Progress\Proto.Progress.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\protos\auth\auth.proto" GrpcServices="Client" />
+    <Protobuf Include="..\..\protos\Proto.Auth\auth.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

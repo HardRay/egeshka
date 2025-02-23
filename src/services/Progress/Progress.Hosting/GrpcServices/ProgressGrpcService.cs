@@ -1,4 +1,4 @@
-﻿using Egeshka.Progress.Grpc;
+﻿using Egeshka.Grpc.Progress;
 using Egeshka.Progress.Hosting.Mappers;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;

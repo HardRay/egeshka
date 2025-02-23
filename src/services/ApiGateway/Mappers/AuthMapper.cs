@@ -1,6 +1,6 @@
 ﻿using Egeshka.ApiGateway.Dtos.UserLogin;
 using Egeshka.ApiGateway.Dtos.UserRelogin;
-using Egeshka.Auth.Grpc;
+using Egeshka.Grpc.Auth;
 
 namespace Egeshka.ApiGateway.Mappers;
 

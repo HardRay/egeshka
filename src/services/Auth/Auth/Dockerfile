@@ -10,8 +10,10 @@ COPY ["libraries/Core.Domain", "src/libraries/Core.Domain/"]
 COPY ["libraries/Core.Models", "src/libraries/Core.Models/"]
 COPY ["libraries/Core.Application", "src/libraries/Core.Domain/"]
 COPY ["libraries/Core.Hosting", "src/libraries/Core.Hosting/"]
-COPY ["libraries/Core.Proto", "src/libraries/Core.Proto/"]
-COPY ["protos/auth/auth.proto", "src/protos/auth/auth.proto/"]
+
+COPY ["protos/Proto.Common", "src/protos/Proto.Common/"]
+COPY ["protos/Proto.Auth", "src/protos/Proto.Auth/"]
+
 COPY ["services/Auth/Auth", "src/services/Auth/Auth/"]
 COPY ["services/Auth/Auth.Domain", "src/services/Auth/Auth.Domain/"]
 COPY ["services/Auth/Auth.Application", "src/services/Auth/Auth.Application/"]

@@ -4,18 +4,13 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>Egeshka.Core.Proto</AssemblyName>
-    <RootNamespace>Egeshka.Core.Proto</RootNamespace>
+    <AssemblyName>Egeshka.Proto.Auth</AssemblyName>
+    <RootNamespace>Egeshka.Proto.Auth</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.67.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Protobuf Include="..\..\protos\Proto.Storage\Common\grpc_error_model.proto" GrpcServices="Client" />
-    <Protobuf Include="..\..\protos\Proto.Storage\Common\date.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

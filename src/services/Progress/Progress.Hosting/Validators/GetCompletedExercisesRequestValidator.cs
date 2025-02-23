@@ -1,5 +1,5 @@
 ﻿using Egeshka.Core.Models.Constants;
-using Egeshka.Progress.Grpc;
+using Egeshka.Grpc.Progress;
 using FluentValidation;
 
 namespace Egeshka.Progress.Hosting.Validators;

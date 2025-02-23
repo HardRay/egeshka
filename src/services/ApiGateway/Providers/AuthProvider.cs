@@ -2,7 +2,7 @@
 using Egeshka.ApiGateway.Dtos.UserRelogin;
 using Egeshka.ApiGateway.Mappers;
 using Egeshka.ApiGateway.Providers.Interfaces;
-using Egeshka.Auth.Grpc;
+using Egeshka.Grpc.Auth;
 
 namespace Egeshka.ApiGateway.Providers;
 

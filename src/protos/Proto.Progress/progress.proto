@@ -1,5 +1,5 @@
 syntax = "proto3";
-option csharp_namespace = "Egeshka.Progress.Grpc";
+option csharp_namespace = "Egeshka.Grpc.Progress";
 
 package egeshka.proto.progress;
 

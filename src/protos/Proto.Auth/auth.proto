@@ -1,5 +1,5 @@
 syntax = "proto3";
-option csharp_namespace = "Egeshka.Auth.Grpc";
+option csharp_namespace = "Egeshka.Grpc.Auth";
 
 package egeshka.proto.auth;
 
