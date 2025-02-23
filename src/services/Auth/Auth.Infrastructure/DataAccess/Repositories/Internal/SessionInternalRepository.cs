@@ -17,7 +17,6 @@ public sealed class SessionInternalRepository(
         """
             id "Id",
             user_id "UserId",
-            access_token "AccessToken",
             refresh_token "RefreshToken",
             create_at "CreatedAt",
             update_at "UpdateAt"
@@ -77,7 +76,6 @@ public sealed class SessionInternalRepository(
             $"""
                 update {TableName}
                 set
-                    access_token = @AccessToken,
                     refresh_token = @RefreshToken,
                     update_at = @UpdateAt
                 where id = @Id;
@@ -88,7 +86,6 @@ public sealed class SessionInternalRepository(
             new
             {
                 session.Id,
-                session.AccessToken,
                 session.RefreshToken,
                 UpdateAt = dateTimeProvider.UtcNow,
             },

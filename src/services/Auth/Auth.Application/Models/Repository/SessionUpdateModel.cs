@@ -2,5 +2,4 @@
 
 public sealed record SessionUpdateModel(
     long Id,
-    string AccessToken,
     string RefreshToken);

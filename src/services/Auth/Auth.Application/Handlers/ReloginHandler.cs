@@ -19,7 +19,7 @@ public sealed class ReloginHandler(
 
         var authorizationData = await authorizationService.GenerateAuthorizationDataAsync(session.UserId, cancellationToken);
 
-        var updateSession = new SessionUpdateModel(session.Id, authorizationData.AccessToken, authorizationData.RefreshToken);
+        var updateSession = new SessionUpdateModel(session.Id, authorizationData.RefreshToken);
         await userRepository.UpdateSessionAsync(updateSession, cancellationToken);
 
         return new ReloginResult(authorizationData);
