@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <Protobuf Include="..\..\protos\Proto.Auth\auth.proto" GrpcServices="Client" />
+    <Protobuf Include="..\..\protos\Proto.Progress\*.proto" GrpcServices="Client" ProtoRoot="..\..\protos" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using Egeshka.Grpc.Progress;
 
 namespace Egeshka.ApiGateway.Extensions;
 
@@ -16,6 +17,7 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.AddTransient<IAuthProvider, AuthProvider>();
+        services.AddTransient<IProgressProvider, ProgressProvider>();
 
         return services;
     }
@@ -77,6 +79,17 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        services
+            .AddAuthGrpcClients(configuration)
+            .AddProgressGrpcClients(configuration);
+
+        return services;
+    }
+
+    private static IServiceCollection AddAuthGrpcClients(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
         services.AddGrpcClient<AuthGrpc.AuthGrpcClient>(options =>
         {
             var url = configuration.GetValue<string>("AUTH_ADDRESS");
@@ -88,6 +101,24 @@ public static class ServiceCollectionExtensions
 
             options.Address = new Uri(url);
         });
+
+        return services;
+    }
+
+    private static IServiceCollection AddProgressGrpcClients(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        var url = configuration.GetValue<string>("PROGRESS_ADDRESS");
+
+        if (string.IsNullOrEmpty(url))
+        {
+            throw new ArgumentException("Требуется указать переменную окружения PROGRESS_ADDRESS или она пустая");
+        }
+
+        var uri = new Uri(url);
+        services.AddGrpcClient<ProgressGrpc.ProgressGrpcClient>(options => options.Address = uri);
+        services.AddGrpcClient<StreakGrpc.StreakGrpcClient>(options => options.Address = uri);
 
         return services;
     }

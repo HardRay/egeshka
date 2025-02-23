@@ -1,4 +1,6 @@
-﻿namespace Egeshka.ApiGateway.Dtos.Progress.GetMyStreak;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Egeshka.ApiGateway.Dtos.Progress.GetMyStreaks;
 
 /// <summary>
 /// Ответ получения интервалов ударного режима
@@ -6,7 +8,13 @@
 public sealed class GetMyStreaksResponse
 {
     /// <summary>
+    /// Количество дней в текущем ударном режиме
+    /// </summary>
+    [Required]
+    public int CurrentStreak { get; init; }
+
+    /// <summary>
     /// Интервалы ударного режима
     /// </summary>
-    public IReadOnlyCollection<Streak> Streaks { get; init; } = [];
+    public IReadOnlyCollection<StreakItem> Streaks { get; init; } = [];
 }

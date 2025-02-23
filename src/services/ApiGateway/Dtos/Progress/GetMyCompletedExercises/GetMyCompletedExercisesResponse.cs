@@ -3,7 +3,7 @@
 namespace Egeshka.ApiGateway.Dtos.Progress.GetMyCompletedExercises;
 
 /// <summary>
-/// Ответ получения своих пройденных заданий
+/// Ответ получения своих пройденных упражнений
 /// </summary>
 public sealed class GetMyCompletedExercisesResponse
 {

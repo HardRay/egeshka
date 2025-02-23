@@ -58,6 +58,7 @@ services:
     environment:
       - HTTP_PORT=5108
       - AUTH_ADDRESS=http://auth-service:8080
+      - PROGRESS_ADDRESS=http://progress-service:8080
       - AuthOptions__SecretKey=${AccessTokenOptions__SecretKey}
     ports:
       - "5202:5108"

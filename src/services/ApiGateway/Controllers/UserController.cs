@@ -44,6 +44,6 @@ public sealed class UserController(IAuthProvider authProvider) : ControllerBaseW
     [HttpGet("id")]
     public Task<long> GetMyId()
     {
-        return Task.FromResult(GetUserIdOrThrow());
+        return Task.FromResult(GetUserIdOrThrow().Value);
     }
 }
