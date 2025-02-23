@@ -52,8 +52,8 @@ public sealed class SessionInternalRepository(
     {
         const string Sql =
             $"""
-                insert into {TableName}(user_id, access_token, refresh_token, create_at, update_at)
-                values (@UserId, @AccessToken, @RefreshToken, @CreateAt, @UpdateAt);
+                insert into {TableName}(user_id, refresh_token, create_at, update_at)
+                values (@UserId, @RefreshToken, @CreateAt, @UpdateAt);
             """;
 
         var now = dateTimeProvider.UtcNow;
@@ -62,7 +62,6 @@ public sealed class SessionInternalRepository(
             new
             {
                 session.UserId,
-                session.AccessToken,
                 session.RefreshToken,
                 CreateAt = now,
                 UpdateAt = now,

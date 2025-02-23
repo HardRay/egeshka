@@ -3,7 +3,6 @@
 public sealed record SessionDbModel(
     long Id,
     long UserId,
-    string AccessToken,
     string RefreshToken,
     DateTime CreatedAt,
     DateTime UpdateAt);

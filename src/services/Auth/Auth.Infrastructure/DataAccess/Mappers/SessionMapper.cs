@@ -11,7 +11,6 @@ public static class SessionMapper
         return new Session(
             Id: new SessionId(dbModel.Id),
             UserId: new UserId(dbModel.UserId),
-            AccessToken: dbModel.AccessToken,
             RefreshToken: dbModel.RefreshToken,
             CreatedAt: dbModel.CreatedAt,
             UpdateAt: dbModel.UpdateAt);

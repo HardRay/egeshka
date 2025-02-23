@@ -2,6 +2,8 @@
 using Egeshka.Auth.Application.Models.Repository;
 using Egeshka.Auth.Application.Repository;
 using Egeshka.Auth.Application.Services.Interfaces;
+using Egeshka.Auth.Domain.Entities;
+using Egeshka.Core.Domain.ValueObjects;
 using Egeshka.Core.Models.Exceptions;
 using MediatR;
 
@@ -18,14 +20,23 @@ public sealed class LoginHandler(
         var registration = await registrationRepository.GetByTokenAsync(request.RegistrationToken, cancellationToken)
             ?? throw new EntityNotFoundException("Не найдена регистрация");
 
-        var userCreationResult = await userRepository.CreateUserByRegistrationIdAsync(registration.Id, cancellationToken);
-        var userId = userCreationResult.UserId;
-
+        var userId = await GetOrCreateUserIdAsync(registration, cancellationToken);
         var authorizationData = await authorizationService.GenerateAuthorizationDataAsync(userId, cancellationToken);
 
-        var session = new SessionInsertModel(userId, authorizationData.AccessToken, authorizationData.RefreshToken);
+        var session = new SessionInsertModel(userId, authorizationData.RefreshToken);
         await userRepository.InsertSessionAsync(session, cancellationToken);
 
         return new LoginResult(authorizationData);
+    }
+
+    private async Task<UserId> GetOrCreateUserIdAsync(Registration registration, CancellationToken cancellationToken)
+    {
+        var existingUser = await userRepository.GetUserByMobileNumberAsync(registration.MobileNumber, cancellationToken);
+        if (existingUser is not null)
+            return existingUser.Id;
+
+        var userCreationResult = await userRepository.CreateUserByRegistrationIdAsync(registration.Id, cancellationToken);
+        
+        return userCreationResult.UserId;
     }
 }

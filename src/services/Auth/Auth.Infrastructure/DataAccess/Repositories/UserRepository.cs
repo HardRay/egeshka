@@ -58,4 +58,13 @@ public sealed class UserRepository(
 
         await sessionRepository.UpdateSession(connection, session, cancellationToken);
     }
+
+    public async Task<User?> GetUserByMobileNumberAsync(MobileNumber mobileNumber, CancellationToken cancellationToken)
+    {
+        using var connection = connectionFactory.GetConnection();
+        await connection.OpenAsync(cancellationToken);
+
+        var user = await userInternalRepository.GetUserByMobileNumberAsync(connection, mobileNumber, cancellationToken);
+        return user;
+    }
 }

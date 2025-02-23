@@ -35,17 +35,17 @@ public sealed class InitialTableCreation : SqlMigration
                 update_at timestamp with time zone not null
             );
 
+            create index users_mobile_number_idx on users(mobile_number);
+
             create table if not exists sessions(
                 id bigserial primary key,
                 user_id bigint not null,
-                access_token varchar(500) not null,
                 refresh_token varchar(500) not null,
                 create_at timestamp with time zone not null,
                 update_at timestamp with time zone not null
             );
 
             create index sessions_user_id_idx on sessions(user_id);
-            create index sessions_access_token_idx on sessions(access_token);
             create index sessions_refresh_token_idx on sessions(refresh_token);
         """;
 
