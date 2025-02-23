@@ -45,7 +45,10 @@ public sealed class StreakItemInternalRepository : IStreakItemInternalRepository
     {
         const string Sql =
             $"""
-                select user_id, date, type
+                select 
+                    user_id "UserId",
+                    date "Date",
+                    type "Type"
                 from {TableName}
                 where user_id = @UserId
                 order by date desc;

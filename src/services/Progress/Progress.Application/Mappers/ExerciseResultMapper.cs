@@ -11,7 +11,10 @@ public static class ExerciseResultMapper
             UserId: command.UserId,
             SubjectId: command.SubjectId,
             ExerciseId: command.ExerciseId,
-            ErrorTaskIds: command.ErrorTaskIds,
+            ErrorTaskIds: command.ErrorTaskIds
+                .DistinctBy(id => id.Value)
+                .OrderBy(id => id.Value)
+                .ToArray(),
             ExperiencePoints: command.ExperiencePoints,
             Date: command.Date);
     }

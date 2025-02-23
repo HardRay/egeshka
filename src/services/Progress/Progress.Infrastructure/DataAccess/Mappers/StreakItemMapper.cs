@@ -1,6 +1,7 @@
-﻿using Egeshka.Progress.Domain.Entities;
-using Egeshka.Progress.Infrastructure.DataAccess.DbModels;
+﻿using Egeshka.Core.Domain.Enums;
 using Egeshka.Core.Domain.ValueObjects;
+using Egeshka.Progress.Domain.Entities;
+using Egeshka.Progress.Infrastructure.DataAccess.DbModels;
 
 namespace Egeshka.Progress.Infrastructure.DataAccess.Mappers;
 
@@ -10,7 +11,7 @@ public static class StreakItemMapper
     {
         return new StreakItem(
             UserId: new UserId(model.UserId),
-            Date: model.Date,
-            Type: model.Type);
+            Date: DateOnly.FromDateTime(model.Date),
+            Type: (StreakItemType)model.Type);
     }
 }

@@ -9,8 +9,9 @@ public sealed class GetCompletedExercisesQueryHandler(
 {
     public async Task<GetCompletedExercisesResult> Handle(GetCompletedExercisesQuery request, CancellationToken cancellationToken)
     {
-        var result = await repository.GetCompletedExercisesAsync(request.UserId, request.SubjectId, cancellationToken);
+        var exerciseIds = await repository.GetCompletedExercisesAsync(request.UserId, request.SubjectId, cancellationToken);
+        var sortedExerciseIds = exerciseIds.DistinctBy(id => id.Value).OrderBy(id => id.Value).ToArray();
 
-        return new GetCompletedExercisesResult(result);
+        return new GetCompletedExercisesResult(sortedExerciseIds);
     }
 }

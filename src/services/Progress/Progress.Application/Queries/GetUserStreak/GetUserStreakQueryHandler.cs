@@ -33,7 +33,7 @@ public sealed class GetUserStreakQueryHandler(
         var streak = 1;
         for (int i = 1; i < items.Count; i++)
         {
-            var offset = dates[i].DayNumber - dates[i - 1].DayNumber;
+            var offset = dates[i - 1].DayNumber - dates[i].DayNumber;
             if (offset != 1)
                 return streak;
             streak++;
