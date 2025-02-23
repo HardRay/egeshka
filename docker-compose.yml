@@ -11,8 +11,8 @@ services:
     container_name: auth-service
     environment:
       - GRPC_PORT=8080
-      - AuthDatabase__Password=${AuthDatabase__Password}
-      - AccessTokenOptions__SecretKey=${AccessTokenOptions__SecretKey}
+      - AuthDatabase__Password=${AuthDatabasePassword}
+      - AccessTokenOptions__SecretKey=${AccessTokenSecretKey}
 
   auth-service-db:
     image: postgres:latest
@@ -35,8 +35,8 @@ services:
     container_name: progress-service
     environment:
       - GRPC_PORT=8080
-      - ProgressDatabase__Password=${ProgressDatabase__Password}
-      - AccessTokenOptions__SecretKey=${AccessTokenOptions__SecretKey}
+      - ProgressDatabase__Password=${ProgressDatabasePassword}
+      - AccessTokenOptions__SecretKey=${AccessTokenSecretKey}
 
   progress-service-db:
     image: postgres:latest
@@ -59,7 +59,7 @@ services:
       - HTTP_PORT=5108
       - AUTH_ADDRESS=http://auth-service:8080
       - PROGRESS_ADDRESS=http://progress-service:8080
-      - AuthOptions__SecretKey=${AccessTokenOptions__SecretKey}
+      - AuthOptions__SecretKey=${AccessTokenSecretKey}
     ports:
       - "5202:5108"
 
